@@ -1,5 +1,197 @@
 models:
-  # ...
+  Language:
+    name: json
+    slug: string:30 unique
+    is_active: boolean default:true
+
+  Currency:
+    name: json
+    currency: string:10 unique
+    symbol: string:10 unique
+    is_active: boolean default:true
+
+  OpeningHour:
+    day: enum:monday,tuesday,wednesday,thursday,friday,saturday,sunday
+    open: time
+    close: time
+    relationships:
+      morphTo: OpeningHourable
+  Category:
+    name: json
+    slug: string:50 unique
+    thumbnail: string nullable
+    is_active: boolean default:true
+    relationships:
+      belongsToMany: Restaurant
+  Service:
+    name: json
+    slug: string:50 unique
+    is_active: boolean default:true
+    relationships:
+      belongsToMany: Restaurant
+
+  Country:
+    name: json
+    slug: string:50 unique
+    is_active: boolean default:true
+    relationships:
+      hasMany: City
+  City:
+    country_id: id foreign:countries
+    name: json
+    slug: string:50 unique
+    is_active: boolean default:true
+    relationships:
+      hasMany: Restaurant, District
+  District:
+    city_id: id foreign:cities
+    name: json
+    slug: string unique
+    is_active: boolean default:true
+    relationships:
+      hasMany: Restaurant
+      belongsTo: City
+  Phone:
+    phone: string:50 unique index
+    is_active: boolean default:true
+    is_verified: boolean default:false
+    is_main: boolean default:false
+    relationships:
+      morphTo: Phoneable
+  Restaurant:
+    owner_id: id foreign:users
+    district_id: id foreign:districts
+    address: string nullable
+    approvedby_id: id foreign:users nullable
+    name: json
+    slug: string:128 unique
+    description: json nullable
+    is_active: boolean default:true
+    longitude: decimal nullable
+    latitude: decimal nullable
+    currency_id: id foreign:currencies
+    meta_title: json nullable
+    meta_description: json nullable
+    meta_keywords: json nullable
+    relationships:
+      belongsToMany: Category, Service
+      hasMany: Menu, Salle
+      morphMany: Image, Review, Favorite, Reservation, OpeningHour, Phone, Link
+
+  Link:
+    name: string
+    url: string
+    is_active: boolean default:true
+    relationships:
+      morphTo: Linkable
+  Menu:
+    restaurant_id: id foreign:restaurants
+    name: json
+    description: json nullable
+    relationships:
+      hasMany: MenuCategory
+  MenuCategory:
+    menu_id: id foreign:menus
+    name: json
+    relationships:
+      hasMany: MenuItem
+  MenuItem:
+    menu_category_id: id foreign:menu_categories
+    name: json
+    price: decimal
+    description: json nullable
+    relationships:
+      morphMany: Image
+  Favorite:
+    user_id: id foreign:users
+    relationships:
+      morphTo: Favoritable
+  Image:
+    name: string nullable
+    url: string
+    is_main: boolean default:false
+    relationships:
+      morphTo: Imageable
+  Salle:
+    restaurant_id: id foreign:restaurants
+    name: string
+    description: string
+    relationships:
+      hasMany: Table
+  Table:
+    salle_id: id foreign:salles
+    name: string:50
+    description: string nullable
+    capacity: integer
+    relationships:
+      hasMany: Reservation
+  Reservation:
+    table_id: id 
+    user_id: id
+    approvedby_id: id foreign:users nullable
+    approved_at: datetime nullable
+    arrival_date: datetime
+    departure_date: datetime nullable
+    status: enum:pending,accepted,rejected
+    note: text nullable
+    relationships:
+      morphTo: Reservationable
+     
+  Review:
+    reviewer_id: id foreign:users
+    rating: integer
+    comment: text nullable
+    relationships:
+      morphTo: Reviewable
+
+
+  Setting:
+    name: string unique
+    value: text nullable
+
+seeders: Category,Service,City,District, Country, Setting,Language
 
 controllers:
-  # ...
+  Admin/Language:
+    resource
+  Admin/Currency:
+    resource
+  Admin/Category:
+    resource
+  Admin/Service:
+    resource
+  Admin/Country:
+    resource
+  Admin/City:
+    resource
+  Admin/District:
+    resource
+  Admin/Restaurant:
+    resource
+  Admin/Menu:
+    resource
+  Admin/MenuCategory:
+    resource
+  Admin/MenuItem:
+    resource
+  Admin/Salle:
+    resource
+  Admin/Table:
+    resource
+  Admin/Reservation:
+    resource
+  Admin/Review:
+    resource
+  Admin/Favorite:
+    resource
+  Admin/Phone:
+    resource
+  Admin/Link:
+    resource
+  # Admin/Image:
+  #   resource
+  Admin/Setting:
+    resource
+  Admin/User:
+    resource
+                      
