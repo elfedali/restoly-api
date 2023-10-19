@@ -5,6 +5,25 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <div class="col-12">
+
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ __('label.dashboard') }}</a>
+                        </li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route('admin.category.index') }}">{{ __('label.categories') }}</a>
+                        </li>
+
+                        <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- /.col-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
@@ -120,7 +139,7 @@
                                 <div class="form-text">{{ __('label.is_it_active') }}</div>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">{{ __('label.edit') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('label.update') }}</button>
                                 <a href="{{ route('admin.category.index') }}" class="btn btn-light">
                                     {{ __('label.cancel') }}
                                 </a>

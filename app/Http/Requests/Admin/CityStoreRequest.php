@@ -20,9 +20,8 @@ class CityStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'country_id' => ['required', 'integer', 'exists:countries,id'],
-            'name' => ['required', 'json'],
-            'slug' => ['required', 'string', 'max:50', 'unique:cities,slug'],
+            // 'country_id' => ['required', 'integer', 'exists:countries,id'],
+            'name' => ['required', 'string'],
             'is_active' => ['required'],
         ];
     }

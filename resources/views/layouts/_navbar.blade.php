@@ -12,13 +12,14 @@
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav me-auto">
                   <li class="nav-item">
-                      <a class="nav-link  @if (request()->routeIs('admin.category.*')) active @endif"
-                          href="{{ route('admin.category.index') }}">{{ __('Categories') }}</a>
+                      <a class="nav-link @if (request()->routeIs('admin.country.*')) active @endif"
+                          href="{{ route('admin.country.index') }}">{{ __('label.countries') }}</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link @if (request()->routeIs('admin.country.*')) active @endif"
-                          href="{{ route('admin.country.index') }}">{{ __('Country') }}</a>
+                      <a class="nav-link  @if (request()->routeIs('admin.category.*')) active @endif"
+                          href="{{ route('admin.category.index') }}">{{ __('label.categories') }}</a>
                   </li>
+
 
               </ul>
               <div class="ms-auto">

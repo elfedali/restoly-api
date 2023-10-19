@@ -6,6 +6,13 @@ return [
     "categories" => "Catégories",
     "category" => "Catégorie",
     "country" => "Pays",
+    "countries" => "Pays",
+    "city" => "Ville",
+    "new-city" => "Nouvelle ville",
+    'dashboard' => 'Tableau de bord',
+    'district' => 'District',
+    "districts" => "Districts",
+    "cities" => "Villes",
     "create" => "Créer",
     "edit" => "Modifier",
     "delete" => "Supprimer",
@@ -61,6 +68,27 @@ return [
     "error-message" => "Il y a eu un problème lors de la soumission du formulaire.",
     "error-title" => "Oups ! Quelque chose s'est mal passé.",
     "error-404" => "Désolé, la page que vous recherchez n'existe pas.",
+
+    "currency" => "Devise",
+    "currencies" => "Devises",
+    "currency-created-successfully" => "Devise créée avec succès.",
+    "currency-updated-successfully" => "Devise mise à jour avec succès.",
+    "currency-deleted-successfully" => "Devise supprimée avec succès.",
+    "currency-toggle-is-active" => "Devise basculer est actif",
+
+    "success" => "Succès",
+    "success-message" => "Le formulaire a été soumis avec succès.",
+    "success-title" => "Bien joué !",
+
+    "alert" => "Alerte",
+    "alert-message" => "Il y a eu un problème lors de la soumission du formulaire.",
+    "alert-title" => "Oups ! Quelque chose s'est mal passé.",
+    "alert-404" => "Désolé, la page que vous recherchez n'existe pas.",
+
+    "warning" => "Attention",
+    "warning-message" => "Il y a eu un problème lors de la soumission du formulaire.",
+    "warning-title" => "Oups ! Quelque chose s'est mal passé.",
+
 
 
 ];

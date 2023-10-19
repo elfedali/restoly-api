@@ -48,15 +48,24 @@ Route::prefix('admin')->middleware(['auth', 'setLanguage'])->group(
             ->except(['create', 'edit'])
             ->names('admin.country');
 
+        // country/{country}/city/{city}
+        Route::resource('country.city', App\Http\Controllers\Admin\CountryCityController::class)
+            ->except(['index', 'create', 'edit'])
+            ->names('admin.country.city');
+
+        Route::resource('city.district', App\Http\Controllers\Admin\CityDistrictController::class)
+            ->except(['index', 'create', 'edit'])
+            ->names('admin.city.district');
+
+
         Route::resource('currency', App\Http\Controllers\Admin\CurrencyController::class)->names('admin.currency');
 
 
         Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->names('admin.service');
 
 
-        Route::resource('city', App\Http\Controllers\Admin\CityController::class)->names('admin.city');
 
-        Route::resource('district', App\Http\Controllers\Admin\DistrictController::class)->names('admin.district');
+        //Route::resource('district', App\Http\Controllers\Admin\DistrictController::class)->names('admin.district');
 
         Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class)->names('admin.restaurant');
 

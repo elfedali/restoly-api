@@ -4,7 +4,7 @@
     <div class="auth">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-5  vh-100">
+                <div class="col-lg-5 vh-100 bg-white">
                     <div class="form-auth-wrapper">
                         {{-- include _top --}}
                         @include('auth._top', ['title' => 'auth.new_account'])

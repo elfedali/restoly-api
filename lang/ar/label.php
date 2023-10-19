@@ -6,6 +6,13 @@ return [
     "categories" => "التصنيفات",
     "category" => "التصنيف",
     'country' => 'الدولة', // 'country' => 'الدولة
+    "countries" => "الدول",
+    "city" => "المدينة",
+    "new-city" => "مدينة جديدة",
+    'dashboard' => 'لوحة التحكم',
+    'district' => 'المنطقة',
+    'districts' => 'المناطق', // 'districts' => 'المناطق
+    "cities" => "المدن",
     "create" => "إنشاء",
     "edit" => "تعديل",
     "delete" => "حذف",

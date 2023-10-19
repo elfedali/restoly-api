@@ -5,6 +5,24 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
+            <div class="col-12">
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ __('label.dashboard') }}</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.country.index') }}">
+                                {{ __('label.countries') }}</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $country->name }}</li>
+
+                    </ol>
+                </nav>
+            </div>
+            <!-- /.col-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
@@ -70,11 +88,7 @@
                         {{ __('label.go-back') }}
                     </a>
                 </div>
-                {{-- edit btn go to edit --}}
-            </div>
-            <!-- /.col-6 -->
-            <div class="col-lg-6">
-                <div class="card">
+                <div class="card mt-4">
                     <div class="card-body">
                         {{-- edit  --}}
                         <h5>
@@ -145,7 +159,10 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-lg-6">
+                @include('admin.country._city', ['cities' => $country->cities])
             </div>
             <!-- /.col-lg-6 -->
         </div>

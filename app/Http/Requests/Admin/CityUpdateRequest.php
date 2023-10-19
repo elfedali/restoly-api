@@ -20,9 +20,9 @@ class CityUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'country_id' => ['required', 'integer', 'exists:countries,id'],
+            // 'country_id' => ['required', 'integer', 'exists:countries,id'],
             'name' => ['required', 'json'],
-            'slug' => ['required', 'string', 'max:50', 'unique:cities,slug'],
+            'slug' => ['required', 'string', 'max:50', 'unique:cities,slug' . $this->city->id],
             'is_active' => ['required'],
         ];
     }

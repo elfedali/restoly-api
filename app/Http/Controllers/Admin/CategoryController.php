@@ -44,7 +44,7 @@ class CategoryController extends Controller
     {
         $category->update($request->validated());
 
-        return redirect()->route('admin.category.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.category.show', $category->id)->with('success', 'Category updated successfully.');
     }
 
     public function destroy(Request $request, Category $category): RedirectResponse
