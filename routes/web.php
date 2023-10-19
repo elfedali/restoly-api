@@ -21,21 +21,38 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->middleware('auth')->group(
+Route::prefix('admin')->middleware(['auth', 'setLanguage'])->group(
 
     function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-        Route::resource('category', App\Http\Controllers\Admin\CategoryController::class)->names('admin.category');
+        Route::resource(
+            'category',
+            App\Http\Controllers\Admin\CategoryController::class
+        )
+            ->except(['create', 'edit'])
+            ->names('admin.category');
+        Route::put('category/{category}/toggle', [App\Http\Controllers\Admin\CategoryController::class, 'toggleIsActive'])->name('admin.category.toggle');
 
+        // language switcher
+        Route::post('language/switcher', [App\Http\Controllers\LanguageSwitchController::class, '__invoke'])->name('language.switch');
         Route::resource('language', App\Http\Controllers\Admin\LanguageController::class)->names('admin.language');
+
+        Route::put('country/{country}/toggle', function (App\Models\Country $country) {
+            $country->is_active = !$country->is_active;
+            $country->save();
+            return redirect()->route('admin.country.show', $country->id)->with('success', 'Country updated successfully.');
+        })->name('admin.country.toggle');
+
+        Route::resource('country', App\Http\Controllers\Admin\CountryController::class)
+            ->except(['create', 'edit'])
+            ->names('admin.country');
 
         Route::resource('currency', App\Http\Controllers\Admin\CurrencyController::class)->names('admin.currency');
 
 
         Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->names('admin.service');
 
-        Route::resource('country', App\Http\Controllers\Admin\CountryController::class)->names('admin.country');
 
         Route::resource('city', App\Http\Controllers\Admin\CityController::class)->names('admin.city');
 

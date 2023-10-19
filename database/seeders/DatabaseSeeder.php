@@ -15,10 +15,16 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Abdessamad.fdl',
-            'email' => 'hello@restoly.ma',
+            'first_name' => 'Abdessamad',
+            'last_name' => 'fdl',
+            'username' => 'abdessamad.fdl',
+            'email' => 'webmaster@restoly.ma',
+            'is_admin' => true,
+            'role' => \App\Models\User::ROLE_ADMIN,
+            'bio' => 'I am the admin of this website.',
         ]);
 
         $this->call(CategorySeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }

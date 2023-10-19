@@ -14,48 +14,43 @@ class CountryController extends Controller
 {
     public function index(Request $request): View
     {
-        $countries = Country::all();
+        $countries = Country::all()->sortByDesc('created_at');
 
-        return view('country.index', compact('countries'));
+        return view('admin.country.index', compact('countries'));
     }
 
-    public function create(Request $request): View
-    {
-        return view('country.create');
-    }
 
     public function store(CountryStoreRequest $request): RedirectResponse
     {
-        $country = Country::create($request->validated());
-
-        $request->session()->flash('country.id', $country->id);
-
-        return redirect()->route('country.index');
+        $country = new Country();
+        $country->setTranslations('name', [
+            app()->getLocale() => $request->validated()['name'],
+        ]);
+        $country->is_active = $request->validated()['is_active'] ?? false;
+        $country->save();
+        return redirect()->route('admin.country.index')->with('success', 'Country created successfully.');
     }
 
     public function show(Request $request, Country $country): View
     {
-        return view('country.show', compact('country'));
+        return view('admin.country.show', compact('country'));
     }
 
-    public function edit(Request $request, Country $country): View
-    {
-        return view('country.edit', compact('country'));
-    }
+
 
     public function update(CountryUpdateRequest $request, Country $country): RedirectResponse
     {
         $country->update($request->validated());
 
-        $request->session()->flash('country.id', $country->id);
 
-        return redirect()->route('country.index');
+
+        return redirect()->route('admin.country.index')->with('success', 'Country updated successfully.');
     }
 
     public function destroy(Request $request, Country $country): RedirectResponse
     {
         $country->delete();
 
-        return redirect()->route('country.index');
+        return redirect()->route('admin.country.index')->with('success', 'Country deleted successfully.');
     }
 }

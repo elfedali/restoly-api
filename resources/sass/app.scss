@@ -1,8 +1,26 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-// Variables
-@import 'variables';
+$font-family-sans-serif: "Manrope", sans-serif;
+// 13px en rem
+$font-size-base: 0.8125rem;
 
+$green: #5ed4b4;
+$body-bg: #f0f0f1;
+$dark: #3f454f;
+
+// input shadow null
+$input-btn-focus-box-shadow: none;
+
+// input background
+$input-bg: #ffffff;
+// card bg
+$card-bg: #fff;
+$table-bg: #fff;
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}

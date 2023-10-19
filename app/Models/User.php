@@ -12,15 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 'admin'; // admin is a user with all privileges
+    const ROLE_USER = 'user'; // user is a user with restricted privileges
+    const ROLE_SUBSCRIBER = 'subscriber'; // subscriber is a user with plan
+    const ROLE_MODERATOR = 'moderator'; // moderator is a user with admin privileges on a specific entity
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'username',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +49,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function fullName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }

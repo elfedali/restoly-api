@@ -20,8 +20,8 @@ class CategoryUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'json'],
-            'slug' => ['required', 'string', 'max:50', 'unique:categories,slug'],
+            'name' => ['required', 'string', 'max:50'],
+            'slug' =>  ['required', 'string', 'max:50', 'unique:categories,slug,' . $this->category->id],
             'thumbnail' => ['nullable', 'string'],
             'is_active' => ['required'],
         ];

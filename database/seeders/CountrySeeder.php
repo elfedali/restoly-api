@@ -12,6 +12,33 @@ class CountrySeeder extends Seeder
      */
     public function run(): void
     {
-        Country::factory()->count(5)->create();
+        $list =
+            [
+                [
+                    "name" => [
+                        "en" => "Morooco",
+                        "ar" => "المغرب",
+                        "fr" => "Maroc"
+                    ],
+
+                    "is_active" => true,
+                ],
+                [
+                    "name" => [
+                        "en" => "Egypt",
+                        "ar" => "مصر",
+                        "fr" => "Egypte"
+                    ],
+
+                    "is_active" => false,
+                ],
+            ];
+
+        foreach ($list as $item) {
+            $newCountry = new Country();
+            $newCountry->setTranslations('name', $item['name']);
+            $newCountry->is_active = $item['is_active'] ?? false;
+            $newCountry->save();
+        }
     }
 }

@@ -20,9 +20,8 @@ class CategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'json'],
-            'slug' => ['required', 'string', 'max:50', 'unique:categories,slug'],
-            'thumbnail' => ['nullable', 'string'],
+            'name' => ['required', 'string', 'max:50'],
+            'thumbnail' => ['nullable', 'image', 'max:1024'],
             'is_active' => ['required'],
         ];
     }

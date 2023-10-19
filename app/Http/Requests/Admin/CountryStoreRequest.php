@@ -20,8 +20,7 @@ class CountryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'json'],
-            'slug' => ['required', 'string', 'max:50', 'unique:countries,slug'],
+            'name' => ['required', 'string'],
             'is_active' => ['required'],
         ];
     }
