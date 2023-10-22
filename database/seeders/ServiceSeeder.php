@@ -12,6 +12,39 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Service::factory()->count(5)->create();
+        $list = [
+            [
+                'name' => [
+                    'en' => 'Delivery',
+                    'ar' => 'توصيل',
+                    'fr' => 'Livraison',
+                ],
+
+                'is_active' => true,
+            ],
+            [
+                'name' => [
+                    'en' => 'Takeaway',
+                    'ar' => 'يأخذ بعيدا',
+                    'fr' => 'Emporter',
+                ],
+                'is_active' => true,
+            ],
+            [
+                'name' => [
+                    'en' => 'Dine-in',
+                    'ar' => 'تناول الطعام في المطعم',
+                    'fr' => 'Dîner',
+                ],
+                'is_active' => true,
+            ],
+        ];
+
+        foreach ($list as $item) {
+            $service = new Service();
+            $service->setTranslations('name', $item['name']);
+            $service->is_active = $item['is_active'];
+            $service->save();
+        }
     }
 }

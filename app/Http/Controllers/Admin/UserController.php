@@ -14,48 +14,39 @@ class UserController extends Controller
 {
     public function index(Request $request): View
     {
-        $users = User::all();
+        $users = User::all()->sortByDesc('id');
 
-        return view('user.index', compact('users'));
-    }
-
-    public function create(Request $request): View
-    {
-        return view('user.create');
+        return view('admin.user.index', compact('users'));
     }
 
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        $user = User::create($request->validated());
+        $user = new User($request->validated());
+        $user->password = bcrypt($request->password);
+        $user->role = User::ROLE_USER;
+        $user->save();
 
-        $request->session()->flash('user.id', $user->id);
-
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index')->with('success', 'User created successfully.');
     }
 
     public function show(Request $request, User $user): View
     {
-        return view('user.show', compact('user'));
+        return view('admin.user.show', compact('user'));
     }
 
-    public function edit(Request $request, User $user): View
-    {
-        return view('user.edit', compact('user'));
-    }
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
 
-        $request->session()->flash('user.id', $user->id);
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.show', $user->id)->with('success', 'User updated successfully.');
     }
 
     public function destroy(Request $request, User $user): RedirectResponse
     {
         $user->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index')->with('success', 'User deleted successfully.');
     }
 }

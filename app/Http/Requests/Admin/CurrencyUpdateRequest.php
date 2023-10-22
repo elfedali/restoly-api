@@ -20,7 +20,10 @@ class CurrencyUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'currency' => ['required', 'string', 'max:10', 'unique:currencies,currency'],
+            'name' => ['required', 'string', 'max:50'],
+            'currency' => ['required', 'string', 'max:10', 'unique:currencies,currency,' . $this->route('currency')->id],
+            'symbol' => ['required', 'string', 'max:10', 'unique:currencies,symbol,' . $this->route('currency')->id],
+            'is_active' => ['nullable'],
         ];
     }
 }

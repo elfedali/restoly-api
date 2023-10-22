@@ -1,6 +1,8 @@
 <div class="card">
     <div class="card-body">
-
+        <h5>
+            {{ __('label.city') }} #{{ $city->id }}
+        </h5>
         <table class="table table-striped">
             <tr>
                 <th> {{ __('label.id') }} </th>

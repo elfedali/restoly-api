@@ -19,8 +19,22 @@
                       <a class="nav-link  @if (request()->routeIs('admin.category.*')) active @endif"
                           href="{{ route('admin.category.index') }}">{{ __('label.categories') }}</a>
                   </li>
-
-
+                  <li class="nav-item">
+                      <a class="nav-link  @if (request()->routeIs('admin.currency.*')) active @endif"
+                          href="{{ route('admin.currency.index') }}">{{ __('label.currencies') }}</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link  @if (request()->routeIs('admin.service.*')) active @endif"
+                          href="{{ route('admin.service.index') }}">{{ __('label.services') }}</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link  @if (request()->routeIs('admin.restaurant.*')) active @endif"
+                          href="{{ route('admin.restaurant.index') }}">{{ __('label.restaurants') }}</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link  @if (request()->routeIs('admin.user.*')) active @endif"
+                          href="{{ route('admin.user.index') }}">{{ __('label.users') }}</a>
+                  </li>
               </ul>
               <div class="ms-auto">
                   <form method="POST" action="{{ route('language.switch') }}">
@@ -35,7 +49,7 @@
               </div>
 
               <!-- Right Side Of Navbar -->
-              <ul class="navbar-nav ">
+              <ul class="navbar-nav">
                   <!-- Authentication Links -->
                   @guest
                       @if (Route::has('login'))

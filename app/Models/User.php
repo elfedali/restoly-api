@@ -28,6 +28,17 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'is_active',
+        'bio',
+        'telephone',
+        'address',
+        'city',
+        'country',
+        'postal_code',
+        'avatar',
+        'email_notification',
+        'sms_notification',
+
     ];
 
     /**
@@ -53,5 +64,64 @@ class User extends Authenticatable
     public function fullName(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === self::ROLE_USER;
+    }
+
+    public function isSubscriber(): bool
+    {
+        return $this->role === self::ROLE_SUBSCRIBER;
+    }
+
+    public function isModerator(): bool
+    {
+        return $this->role === self::ROLE_MODERATOR;
+    }
+
+    // restaurants
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class, 'owner_id');
+    }
+
+    // has many reviews
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // restaurant count
+    public function hasRestaurant()
+    {
+        return $this->restaurants()->count();
+    }
+    // before save email lower case
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+    // before save username lower case
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = strtolower($value);
+    }
+
+    // before save first name capitalize
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst($value);
+    }
+    // before save last name upper case
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = strtoupper($value);
     }
 }

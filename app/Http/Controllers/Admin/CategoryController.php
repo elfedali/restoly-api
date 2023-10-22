@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request): View
     {
-        $categories = Category::all()->sortByDesc('created_at');
+        $categories = Category::all()->sortByDesc('id');
 
         return view('admin.category.index', compact('categories'));
     }

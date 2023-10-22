@@ -1,21 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-//$font-family-sans-serif: "Manrope", sans-serif;
-// 13px en rem
-$font-size-base: 0.8125rem;
+$font-family-sans-serif: "Manrope", sans-serif;
+// 14px en rem
+$font-size-base: 0.875rem;
 
-$green: #5ed4b4;
+//$green: #5ed4b4;
 $body-bg: #f0f0f1;
-$dark: #3f454f;
+//$dark: #3f454f;
 
 // input shadow null
 $input-btn-focus-box-shadow: none;
 
 // input background
 $input-bg: #ffffff;
+$input-border-width: 2px;
+
 // card bg
 $card-bg: #fff;
+$card-border-radius: 0rem;
 $table-bg: #fff;
+$alert-border-radius: 0rem;
+
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
 
@@ -23,4 +28,8 @@ $table-bg: #fff;
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+label {
+    // font-weight: 600;
+    // font-size: 0.9rem;
 }

@@ -16,12 +16,12 @@ class CurrencyController extends Controller
     {
         $currencies = Currency::all();
 
-        return view('currency.index', compact('currencies'));
+        return view('admin.currency.index', compact('currencies'));
     }
 
     public function create(Request $request): View
     {
-        return view('currency.create');
+        return view('admin.currency.create');
     }
 
     public function store(CurrencyStoreRequest $request): RedirectResponse
@@ -30,17 +30,17 @@ class CurrencyController extends Controller
 
         $request->session()->flash('currency.id', $currency->id);
 
-        return redirect()->route('currency.index');
+        return redirect()->route('admin.currency.index');
     }
 
     public function show(Request $request, Currency $currency): View
     {
-        return view('currency.show', compact('currency'));
+        return view('admin.currency.show', compact('currency'));
     }
 
     public function edit(Request $request, Currency $currency): View
     {
-        return view('currency.edit', compact('currency'));
+        return view('admin.currency.edit', compact('currency'));
     }
 
     public function update(CurrencyUpdateRequest $request, Currency $currency): RedirectResponse
@@ -49,13 +49,13 @@ class CurrencyController extends Controller
 
         $request->session()->flash('currency.id', $currency->id);
 
-        return redirect()->route('currency.index');
+        return redirect()->route('admin.currency.index');
     }
 
     public function destroy(Request $request, Currency $currency): RedirectResponse
     {
         $currency->delete();
 
-        return redirect()->route('currency.index');
+        return redirect()->route('admin.currency.index');
     }
 }

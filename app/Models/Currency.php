@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Currency extends Model
 {
     use HasFactory;
+    use HasTranslations;
+
+
+    public $translatable = ['name'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -31,4 +37,7 @@ class Currency extends Model
         'name' => 'array',
         'is_active' => 'boolean',
     ];
+
+    // slug
+
 }

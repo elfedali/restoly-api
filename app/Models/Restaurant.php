@@ -7,11 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Translatable\HasTranslations;
 
 class Restaurant extends Model
 {
     use HasFactory;
+    use HasTranslations;
+    use HasSlug;
+
+    public $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -20,16 +28,18 @@ class Restaurant extends Model
      */
     protected $fillable = [
         'owner_id',
-        'district_id',
+        // 'district_id',
         'address',
-        'approvedby_id',
+        // 'approvedby_id',
+        // 'approved_at',
+        'createdby_id',
         'name',
         'slug',
         'description',
         'is_active',
         'longitude',
         'latitude',
-        'currency_id',
+        // 'currency_id',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -66,10 +76,11 @@ class Restaurant extends Model
         return $this->belongsToMany(Service::class);
     }
 
-    public function menus(): HasMany
+    public function menu(): HasOne
     {
-        return $this->hasMany(Menu::class);
+        return $this->hasOne(Menu::class);
     }
+
 
     public function salles(): HasMany
     {
@@ -129,5 +140,31 @@ class Restaurant extends Model
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    //slug
+    public function getSlugOptions(): \Spatie\Sluggable\SlugOptions
+    {
+        return \Spatie\Sluggable\SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    // after create restaurant create menu 
+    // protected static function booted()
+    // {
+    //     static::created(function ($restaurant) {
+    //         $restaurant->menu()->create([
+    //             'restaurant_id' => $restaurant->id,
+    //             'name' => 'Menu of ' . $restaurant->name,
+
+    //         ]);
+    //     });
+    // }
+
+    // createdBy
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'createdby_id');
     }
 }

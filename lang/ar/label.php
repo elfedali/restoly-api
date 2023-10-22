@@ -13,6 +13,8 @@ return [
     'district' => 'المنطقة',
     'districts' => 'المناطق', // 'districts' => 'المناطق
     "cities" => "المدن",
+    "user" => "المستخدم",
+    "users" => "المستخدمين",
     "create" => "إنشاء",
     "edit" => "تعديل",
     "delete" => "حذف",

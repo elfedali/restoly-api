@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,15 +60,54 @@ Route::prefix('admin')->middleware(['auth', 'setLanguage'])->group(
 
 
         Route::resource('currency', App\Http\Controllers\Admin\CurrencyController::class)->names('admin.currency');
+        Route::put('currency/{currency}/toggle', function (App\Models\Currency $currency) {
+            $currency->is_active = !$currency->is_active;
+            $currency->save();
+            return redirect()->route('admin.currency.show', $currency->id)->with('success', 'Currency updated successfully.');
+        })->name('admin.currency.toggle');
 
 
-        Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->names('admin.service');
+        Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)
+            ->except(['create', 'edit'])
+            ->names('admin.service');
 
+        Route::put('service/{service}/toggle', function (App\Models\Service $service) {
+            $service->is_active = !$service->is_active;
+            $service->save();
+            return redirect()->route('admin.service.show', $service->id)->with('success', 'Service updated successfully.');
+        })->name('admin.service.toggle');
 
 
         //Route::resource('district', App\Http\Controllers\Admin\DistrictController::class)->names('admin.district');
 
-        Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class)->names('admin.restaurant');
+        Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::class)
+            ->except(['show'])
+            ->names('admin.restaurant');
+        // admin.restaurant.phone.delete
+        Route::delete('restaurant/{restaurant}/phone/{phone}', function (Restaurant $restaurant, App\Models\Phone $phone) {
+            // Ensure the phone is associated with the provided restaurant
+            if ($phone->phoneable_type !== 'App\Models\Restaurant' || $phone->phoneable_id !== $restaurant->id) {
+                return response()->json(['message' => 'Invalid phone for this restaurant'], 403);
+            }
+
+            // Delete the phone
+            $phone->delete();
+
+            return response()->json(['message' => 'Phone deleted successfully'], 200);
+            // return redirect()->route('admin.restaurant.edit', $restaurant->id)->with('success', 'Phone deleted successfully.');
+        })->name('admin.restaurant.phone.delete');
+        // delete link
+        Route::delete('restaurant/{restaurant}/link/{link}', function (Restaurant $restaurant, \App\Models\Link $link) {
+            // Ensure the link is associated with the provided restaurant
+            if ($link->linkable_type !== 'App\Models\Restaurant' || $link->linkable_id !== $restaurant->id) {
+                return response()->json(['message' => 'Invalid link for this restaurant'], 403);
+            }
+            // Delete the link
+            $link->delete();
+
+            return response()->json(['message' => 'Link deleted successfully'], 200);
+        })->name('admin.restaurant.link.delete');
+
 
         Route::resource('menu', App\Http\Controllers\Admin\MenuController::class)->names('admin.menu');
 
@@ -91,6 +131,8 @@ Route::prefix('admin')->middleware(['auth', 'setLanguage'])->group(
 
         Route::resource('setting', App\Http\Controllers\Admin\SettingController::class)->names('admin.setting');
 
-        Route::resource('user', App\Http\Controllers\Admin\UserController::class)->names('admin.user');
+        Route::resource('user', App\Http\Controllers\Admin\UserController::class)
+            ->except(['create', 'edit'])
+            ->names('admin.user');
     }
 );

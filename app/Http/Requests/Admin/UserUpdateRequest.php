@@ -20,11 +20,22 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'username' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'email_verified_at' => ['nullable'],
-            'password' => ['required', 'password'],
-            'remember_token' => ['nullable', 'string'],
+            'is_active' => ['nullable', 'boolean'],
+            'role' => ['required', 'string', 'in:admin,user,subscriber,moderator'],
+            'first_name' => ['nullable', 'string'],
+            'last_name' => ['nullable', 'string'],
+            'bio' => ['nullable', 'string'],
+            'telephone' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
+            'city' => ['nullable', 'string'],
+            'country' => ['nullable', 'string'],
+            'postal_code' => ['nullable', 'string'],
+            'avatar' => ['nullable', 'string'],
+            'email_notification' => ['nullable', 'boolean'],
+            'sms_notification' => ['nullable', 'boolean'],
+
         ];
     }
 }

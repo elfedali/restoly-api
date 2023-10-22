@@ -13,6 +13,8 @@ return [
     'dashboard' => 'Dashboard',
     'district' => 'District',
     'districts' => 'Districts',
+    "user" => "User",
+    "users" => "Users",
     "create" => "Create",
     "edit" => "Edit",
     "delete" => "Delete",

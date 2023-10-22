@@ -14,48 +14,43 @@ class ServiceController extends Controller
 {
     public function index(Request $request): View
     {
-        $services = Service::all();
+        $services = Service::all()->sortByDesc('id');
 
-        return view('service.index', compact('services'));
+        return view('admin.service.index', compact('services'));
     }
 
-    public function create(Request $request): View
-    {
-        return view('service.create');
-    }
 
     public function store(ServiceStoreRequest $request): RedirectResponse
     {
-        $service = Service::create($request->validated());
-
-        $request->session()->flash('service.id', $service->id);
-
-        return redirect()->route('service.index');
+        $service = new Service();
+        $service->setTranslations('name', [
+            app()->getLocale() => $request->validated()['name'],
+        ]);
+        $service->is_active = $request->validated()['is_active'] ?? false;
+        $service->save();
+        return redirect()->route('admin.service.index')->with('success', 'Service created successfully.');
     }
 
     public function show(Request $request, Service $service): View
     {
-        return view('service.show', compact('service'));
+        return view('admin.service.show', compact('service'));
     }
 
     public function edit(Request $request, Service $service): View
     {
-        return view('service.edit', compact('service'));
+        return view('admin.service.edit', compact('service'));
     }
 
     public function update(ServiceUpdateRequest $request, Service $service): RedirectResponse
     {
         $service->update($request->validated());
-
-        $request->session()->flash('service.id', $service->id);
-
-        return redirect()->route('service.index');
+        return redirect()->route('admin.service.show', $service->id)->with('success', 'Service updated successfully.');
     }
 
     public function destroy(Request $request, Service $service): RedirectResponse
     {
         $service->delete();
 
-        return redirect()->route('service.index');
+        return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully.');
     }
 }

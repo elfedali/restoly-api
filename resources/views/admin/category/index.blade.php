@@ -109,18 +109,18 @@
                                             </a>
 
 
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    </tr>
-                    @endforeach
-                    </table>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
+            <!-- /.col-lg-6 -->
         </div>
-        <!-- /.col-lg-6 -->
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
     </div>
     <!-- /.container -->
 @endsection
