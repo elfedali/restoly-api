@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 {{-- vh-100 --}}
-                <div class="col-lg-4 vh-100 bg-white">
+                <div class="col-xl-3 col-lg-4 vh-100 bg-white">
                     <div class="form-auth-wrapper">
                         {{-- include top --}}
                         @include('auth._top', ['title' => 'auth.welcome-back'])

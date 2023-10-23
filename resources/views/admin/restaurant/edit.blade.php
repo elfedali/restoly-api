@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12">
                 <h5>
-                    {{ __('label.new_restaurant') }}
+                    {{ __('label.edit') }} #{{ $restaurant->id }}
                 </h5>
             </div>
             <!-- /.col-12 -->

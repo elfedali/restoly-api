@@ -38,11 +38,11 @@
                                 <td><u>{{ $user->username }}</u></td>
                             <tr>
                             <tr>
-                                <th>{{ __('label.first_name') }}</th>
+                                <th>{{ __('label.first-name') }}</th>
                                 <td>{{ $user->first_name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('label.last_name') }}</th>
+                                <th>{{ __('label.last-name') }}</th>
                                 <td><b>{{ $user->last_name }}</b></td>
                             </tr>
                             <tr>
@@ -91,7 +91,7 @@
                                 <td>{{ $user->country ?? '_' }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('label.postal_code') }}</th>
+                                <th>{{ __('label.postal-code') }}</th>
                                 <td>{{ $user->postal_code ?? '_' }}</td>
                             </tr>
                             {{-- sms_notification --}}
@@ -122,7 +122,7 @@
 
                             {{-- email_notification --}}
                             <tr>
-                                <th>{{ __('label.email_notification') }}</th>
+                                <th>{{ __('label.email-notification') }}</th>
                                 <td>
                                     @if ($user->email_notification)
                                         <span class="badge bg-success">{{ __('label.yes') }}</span>
@@ -133,7 +133,7 @@
                             </tr>
                             {{-- email_verified_at --}}
                             <tr>
-                                <th>{{ __('label.email_verified_at') }}</th>
+                                <th>{{ __('label.email-verified-at') }}</th>
                                 <td>{{ $user->email_verified_at ?? '_' }}</td>
                             </tr>
 
@@ -189,7 +189,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="first_name" class="form-label">{{ __('label.first_name') }}</label>
+                                <label for="first_name" class="form-label">{{ __('label.first-name') }}</label>
                                 <input type="text" name="first_name" id="first_name"
                                     class="form-control @error('first_name') is-invalid @enderror"
                                     value="{{ $user->first_name }}" aria-describedby="first_nameHelp">
@@ -199,7 +199,7 @@
                                 <div id="first_nameHelp" class="form-text">{{ __('label.first-name-help') }}</div>
                             </div>
                             <div class="mb-3">
-                                <label for="last_name" class="form-label">{{ __('label.last_name') }}</label>
+                                <label for="last_name" class="form-label">{{ __('label.last-name') }}</label>
                                 <input type="text" name="last_name" id="last_name"
                                     class="form-control @error('last_name') is-invalid @enderror"
                                     value="{{ $user->last_name }}" aria-describedby="last_nameHelp">
@@ -280,7 +280,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="postal_code" class="form-label">{{ __('label.postal_code') }}</label>
+                                <label for="postal_code" class="form-label">{{ __('label.postal-code') }}</label>
                                 <input type="text" name="postal_code" id="postal_code"
                                     class="form-control @error('postal_code') is-invalid @enderror"
                                     value="{{ $user->postal_code }}" aria-describedby="postal_codeHelp">
@@ -322,7 +322,7 @@
 
                             <div class="mb-3">
                                 <label for="email_notification"
-                                    class="form-label">{{ __('label.email_notification') }}</label>
+                                    class="form-label">{{ __('label.email-notification') }}</label>
                                 <select name="email_notification" id="email_notification"
                                     class="form-select @error('email_notification') is-invalid @enderror"
                                     aria-describedby="email_notificationHelp">

@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('city_id')->constrained();
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete();
             $table->json('name');
             $table->string('slug')->unique();
             $table->boolean('is_active')->default(true);

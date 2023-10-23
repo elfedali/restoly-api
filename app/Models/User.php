@@ -15,7 +15,8 @@ class User extends Authenticatable
     const ROLE_ADMIN = 'admin'; // admin is a user with all privileges
     const ROLE_USER = 'user'; // user is a user with restricted privileges
     const ROLE_SUBSCRIBER = 'subscriber'; // subscriber is a user with plan
-    const ROLE_MODERATOR = 'moderator'; // moderator is a user with admin privileges on a specific entity
+    const ROLE_MODERATOR = 'moderator';
+    const ROLE_COMMERCIAL = 'commercial';
     /**
      * The attributes that are mass assignable.
      *
