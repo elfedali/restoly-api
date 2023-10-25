@@ -1,6 +1,6 @@
 @include('layouts._head')
 
-<body @if (app()->getLocale() == 'ar') dir="rtl" @endif>
+<body @if (app()->getLocale() == 'ar') dir="rtl" @endif  data-bs-theme="light">
 
     <div id="app">
         @include('layouts._navbar')

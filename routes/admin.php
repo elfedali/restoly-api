@@ -110,5 +110,5 @@ Route::resource('link', App\Http\Controllers\Admin\LinkController::class)->names
 Route::resource('setting', App\Http\Controllers\Admin\SettingController::class)->names('admin.setting');
 
 Route::resource('user', App\Http\Controllers\Admin\UserController::class)
-    ->except(['create', 'edit'])
+    ->except(['edit'])
     ->names('admin.user');

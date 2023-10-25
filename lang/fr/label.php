@@ -37,6 +37,7 @@ return [
     "yes" => "Oui",
     "no" => "Non",
     'active' => 'Actif',
+    'inactive' => 'Inactif',
     'is_active' => 'Est actif',
     'is_it_active' => 'Est-il actif?',
     'list' => 'Liste',
@@ -148,6 +149,26 @@ return [
     'full-name' => 'Nom complet',
     'reset' => 'Réinitialiser',
 
+    'more' => 'Plus',
+    'more-info' => 'Plus d\'informations',
+    'reservation' => 'Réservation',
+    'reservations' => 'Réservations',
+
+    'filter' => 'Filtrer',
+    'filters' => 'Filtres',
+    'reset-filters' => 'Réinitialiser les filtres',
+
+    'any' => 'Tous',
+    'anyone' => 'N\'importe qui',
+
+    'has-restaurant' => 'A un restaurant',
+    'has-no-restaurant' => 'N\'a pas de restaurant',
+
+    'status' => 'Statut',
+    'no-record-found'=> 'Aucun enregistrement trouvé',
+    'count'=> 'Nombre',
+    'results'=> 'Résultats',
+    'symbol'=> 'Symbole',
 
 
 

@@ -4,7 +4,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                <div class="d-flex align-items-center mb-4">
+                
                 <h1 class="h4">{{ __('label.users') }}</h1>
+                    <a class="mx-3 btn btn-sm btn-outline-primary" href="{{ route('admin.user.create') }}"
+                        role="button">
+                        <i class="bi bi-plus-circle"></i>
+                        {{ __('label.create') }}
+                    </a>
+                        
+                </div>
+               
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ __('label.dashboard') }}</a>
@@ -19,11 +29,8 @@
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-lg-4">
-                @include('admin.user._create_form')
-            </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
+                @include('admin.user._user_filter')
                 @include('admin.user._table')
             </div>
             <!-- /.col-lg-8 -->

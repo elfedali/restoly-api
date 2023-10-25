@@ -125,4 +125,10 @@ class User extends Authenticatable
     {
         $this->attributes['last_name'] = strtoupper($value);
     }
+
+    // scopeIsActive
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

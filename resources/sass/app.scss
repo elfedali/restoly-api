@@ -3,24 +3,30 @@
 // $font-family-sans-serif: "Manrope", sans-serif;
 // 14px en rem
 $font-size-base: 0.875rem;
-$dark: #000;
+//$primary: ;
+// $dark: #000;
+$red : lightcoral;
+$green: lightgreen;
 
-//$green: #5ed4b4;
-$body-bg: #f0f0f1;
+// $body-bg: #f0f0f1;
+//$body-bg: #edf1f8;
 //$dark: #3f454f;
 
-// input shadow null
+$border-width: 1px;
 $input-btn-focus-box-shadow: none;
 
-// input background
-$input-bg: #ffffff;
-$input-border-width: 2px;
+
+// $input-bg: #ffffff;
 
 // card bg
-$card-bg: #fff;
-$card-border-radius: 0rem;
-$table-bg: #fff;
-$alert-border-radius: 0rem;
+// $card-bg: #fff;
+// $table-bg: #fff;
+//$border-radius: 0rem;
+// $breadcrumb-bg: transparent;
+
+
+
+
 
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
@@ -33,4 +39,10 @@ $alert-border-radius: 0rem;
 label {
     // font-weight: 600;
     // font-size: 0.9rem;
+}
+
+.d-flex {
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+    }
 }
