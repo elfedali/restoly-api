@@ -110,5 +110,15 @@ Route::resource('link', App\Http\Controllers\Admin\LinkController::class)->names
 Route::resource('setting', App\Http\Controllers\Admin\SettingController::class)->names('admin.setting');
 
 Route::resource('user', App\Http\Controllers\Admin\UserController::class)
-    ->except(['edit'])
+    ->except(['edit','destroy'])
     ->names('admin.user');
+
+Route::put('user/{user}/update-password', [App\Http\Controllers\Admin\UserPasswordChange::class, 'index'])->name('admin.user.update-password');    
+Route::put('user/{user}/toggle', function (App\Models\User $user) {
+    $user->is_active = !$user->is_active;
+    $user->save();
+    return redirect()->route('admin.user.show', $user->id)->with('success', 'User updated successfully.');
+})->name('admin.user.toggle');
+// email
+Route::put('user/{user}/update-email',[App\Http\Controllers\Admin\UserEmailChangeController::class, 'index'])->name('admin.user.update-email');
+Route::delete('user/{user}/delete',[App\Http\Controllers\Admin\UserDeleteController::class, 'index'])->name('admin.user.delete-user');

@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
           <a class="navbar-brand" href="{{ url('/me/admin') }}">
               {{ config('app.name', 'Laravel') }}
@@ -102,4 +102,4 @@
           </div>
       </div>
   </nav>
-  <div style="height:56px"></div>
+  {{-- <div style="height:56px"></div> --}}

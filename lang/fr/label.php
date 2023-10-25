@@ -170,6 +170,9 @@ return [
     'results'=> 'Résultats',
     'symbol'=> 'Symbole',
 
+    'change-password'=> 'Changer le mot de passe',
+    'change-email'=> 'Changer l\'email',
+
 
 
 

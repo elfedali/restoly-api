@@ -21,7 +21,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'username' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            // 'email' => ['required', 'email'],
             'is_active' => ['nullable', 'boolean'],
             'role' => ['required', 'string', 'in:admin,user,subscriber,moderator'],
             'first_name' => ['nullable', 'string'],

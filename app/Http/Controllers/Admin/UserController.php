@@ -19,8 +19,7 @@ class UserController extends Controller
     public function index(Request $request): View
     {
 
-        // spatie/laravel-query-builder 
-
+        // TODO:: filter pagination, persiste filters in url
 
         $users = QueryBuilder::for(User::class)
             ->allowedFilters([
@@ -60,7 +59,7 @@ class UserController extends Controller
                     }
                 }),
             ])
-            ->get();
+            ->paginate(10);
 
 
         return view('admin.user.index', compact('users'));
@@ -95,10 +94,10 @@ class UserController extends Controller
         return redirect()->route('admin.user.show', $user->id)->with('success', 'User updated successfully.');
     }
 
-    public function destroy(Request $request, User $user): RedirectResponse
-    {
-        $user->delete();
+    // public function destroy(Request $request, User $user): RedirectResponse
+    // {
+    //     $user->delete();
 
-        return redirect()->route('admin.user.index')->with('success', 'User deleted successfully.');
-    }
+    //     return redirect()->route('admin.user.index')->with('success', 'User deleted successfully.');
+    // }
 }

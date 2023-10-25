@@ -68,10 +68,9 @@
             </tr>
         @endforeach
 </table>
-{{-- caption count --}}
-<div>
-    {{ __('label.results' )  }} {{ $users->count() }}
- 
+
+<div class="">
+    {{ $users->links() }}
 </div>
 
     </div>

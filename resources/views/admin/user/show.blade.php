@@ -52,17 +52,6 @@
                                         <span class="badge bg-danger">{{ __('label.no') }}</span>
                                     @endif
 
-                                    {{-- toggle is_active form --}}
-                                    {{-- <form action="{{ route('admin.user.toggle', $user) }}" method="POST"
-                                        class="d-inline-block">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-sm btn-light" title="{{ __('Toggle') }}"
-                                            onclick="return confirm('{{ __('label.are-you-sure') }}')">
-                                            <i class="bi bi-arrow-repeat"></i>
-                                        </button>
-                                    </form> --}}
-
                                 </td>
                             </tr>
                             {{-- bio --}}
@@ -151,23 +140,19 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-
-                {{-- cancel btn go t index --}}
                 <div class="mt-4">
                     <a href="{{ route('admin.user.index') }}" class="btn btn-light">
-
                         <i class="bi bi-arrow-left"></i>
-
                         {{ __('label.go-back') }}
                     </a>
                 </div>
-                {{-- edit btn go to edit --}}
+                
             </div>
             <!-- /.col-6 -->
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        {{-- edit  --}}
+                         
                         <h5>
                             {{ __('label.edit') }} #{{ $user->id }}
                         </h5>
@@ -176,7 +161,9 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="username" class="form-label">{{ __('label.username') }}</label>
+                                <label for="username" class="form-label">{{ __('label.username') }}
+                                 <span class="text-danger">*</span>
+                                </label>
                                 <input type="text" name="username" id="username"
                                     class="form-control @error('username') is-invalid @enderror"
                                     value="{{ $user->username }}" aria-describedby="usernameHelp">
@@ -306,7 +293,7 @@
                                 <div id="sms_notificationHelp" class="form-text">
                                     {{ __('label.sms-notification-help') }}</div>
                             </div>
-
+{{-- 
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ __('label.email') }}</label>
                                 <input type="email" name="email" id="email"
@@ -316,7 +303,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <div id="emailHelp" class="form-text">{{ __('label.email-help') }}</div>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <label for="email_notification"
@@ -337,7 +324,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="role" class="form-label">{{ __('label.role') }}</label>
+                                <label for="role" class="form-label">{{ __('label.role') }}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <select name="role" id="role"
                                     class="form-select @error('role') is-invalid @enderror" aria-describedby="roleHelp">
                                     <option value="user" @if ($user->role == 'user') selected @endif>
@@ -350,39 +339,24 @@
                                 @enderror
                                 <div id="roleHelp" class="form-text">{{ __('label.role-help') }}</div>
                             </div>
-
-
-
-
-
-
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">{{ __('label.update') }}</button>
                                 <a href="{{ route('admin.user.index') }}" class="btn btn-light">
                                     {{ __('label.cancel') }}
                                 </a>
                             </div>
-                            <!-- /.d-flex -->
 
                         </form>
-                        <hr>
-                        {{-- delete --}}
-                        <div class="text-end">
-                            <form action="{{ route('admin.user.destroy', $user) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('{{ __('Are you sure?') }}')">
-                                    <i class="bi bi-trash"></i>
-                                    {{ __('label.delete') }}
-                                </button>
-                            </form>
-                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-
+                @include('admin.user._change_email', ['user' => $user])
+                @include('admin.user._change_password', ['user' => $user])
+                @include('admin.user._change_role', ['user' => $user])
+                @include('admin.user._delete_user', ['user' => $user])
+               
+             
+                
             </div>
             <!-- /.col-lg-6 -->
         </div>

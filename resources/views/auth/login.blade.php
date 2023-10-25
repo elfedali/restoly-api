@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="auth">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 {{-- vh-100 --}}
-                <div class="col-xl-3 col-lg-4 vh-100 bg-white">
+                <div class="col-xl-4 col-lg-4 col-md-8 vh-100 mx-auto">
                     <div class="form-auth-wrapper">
                         {{-- include top --}}
                         @include('auth._top', ['title' => 'auth.welcome-back'])
@@ -15,10 +15,6 @@
                     <!-- /.form-auth-wrapper -->
                 </div>
                 <!-- /.col-lg-4 -->
-                <div class="col-lg-8 bg-auth-login">
-                    {{-- empty --}}
-                </div>
-                <!-- /.col-lg-8 -->
             </div>
             <!-- /.row -->
         </div>
