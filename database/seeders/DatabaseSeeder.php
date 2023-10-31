@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Task;
 use Illuminate\Database\Seeder;
+use PHPUnit\Event\Code\Test;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::factory(400)->create();
+        \App\Models\User::factory(400)->create();
 
         \App\Models\User::factory()->create([
             'first_name' => 'Abdessamad',
@@ -30,5 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(CurrencySeeder::class);
+
+        Task::factory()->count(10)->create();
     }
 }

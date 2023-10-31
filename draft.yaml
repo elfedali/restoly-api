@@ -1,10 +1,10 @@
 models:
-    Task:
-      name: string:50
-      description: text nullable
-      is_done: boolean default:false
-      relationships:
-        belongsTo: User
+  Task:
+    name: string:50
+    description: text nullable
+    is_done: boolean default:false
+    relationships:
+      belongsTo: User
 #   Language:
 #     name: json
 #     slug: string:30 unique
@@ -132,7 +132,7 @@ models:
 #     relationships:
 #       hasMany: Reservation
 #   Reservation:
-#     table_id: id 
+#     table_id: id
 #     user_id: id
 #     approvedby_id: id foreign:users nullable
 #     approved_at: datetime nullable
@@ -149,7 +149,6 @@ models:
 #     relationships:
 #       morphTo: Reviewable
 
-
 #   Setting:
 #     name: string unique
 #     value: text nullable
@@ -157,7 +156,7 @@ models:
 # seeders: Category,Service,City,District, Country, Setting,Language
 
 controllers:
-  Admin/Task:
+  Api/Task:
     resource: api
 #   Admin/Language:                                  <
 #     resource
@@ -201,4 +200,4 @@ controllers:
 #     resource
 #   Admin/User:
 #     resource
-                      
+

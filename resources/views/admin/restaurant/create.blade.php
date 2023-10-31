@@ -20,6 +20,7 @@
 
                     @include('admin.restaurant._form')
                     @include('admin.restaurant.widgets._menu')
+                    <menu-component></menu-component>
                     @include('admin.restaurant.widgets._salles')
                     @include('admin.restaurant.widgets._images')
                     @include('admin.restaurant.widgets._links')

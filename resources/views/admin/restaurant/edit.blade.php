@@ -21,6 +21,7 @@
 
                     @include('admin.restaurant._form', ['restaurant' => $restaurant])
                     @include('admin.restaurant.widgets._menu', ['restaurant' => $restaurant])
+
                     @include('admin.restaurant.widgets._salles', ['restaurant' => $restaurant])
                     @include('admin.restaurant.widgets._images', ['restaurant' => $restaurant])
                     @include('admin.restaurant.widgets._links', ['restaurant' => $restaurant])

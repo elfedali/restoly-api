@@ -1,13 +1,13 @@
 created:
-    - app/Http/Controllers/Admin/TaskController.php
+    - app/Http/Controllers/Api/TaskController.php
     - database/factories/TaskFactory.php
-    - database/migrations/2023_10_23_081856_create_tasks_table.php
+    - database/migrations/2023_10_31_090705_create_tasks_table.php
     - app/Models/Task.php
-    - tests/Feature/Http/Controllers/Admin/TaskControllerTest.php
-    - app/Http/Requests/Admin/TaskStoreRequest.php
-    - app/Http/Requests/Admin/TaskUpdateRequest.php
-    - app/Http/Resources/Admin/TaskCollection.php
-    - app/Http/Resources/Admin/TaskResource.php
+    - tests/Feature/Http/Controllers/Api/TaskControllerTest.php
+    - app/Http/Requests/Api/TaskStoreRequest.php
+    - app/Http/Requests/Api/TaskUpdateRequest.php
+    - app/Http/Resources/Api/TaskCollection.php
+    - app/Http/Resources/Api/TaskResource.php
 updated:
     - routes/api.php
 models:

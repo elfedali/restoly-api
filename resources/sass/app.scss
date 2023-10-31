@@ -5,7 +5,7 @@
 $font-size-base: 0.875rem;
 //$primary: ;
 // $dark: #000;
-$red : lightcoral;
+$red: lightcoral;
 $green: lightgreen;
 
 // $body-bg: #f0f0f1;
@@ -15,7 +15,6 @@ $green: lightgreen;
 $border-width: 1px;
 $input-btn-focus-box-shadow: none;
 
-
 // $input-bg: #ffffff;
 
 // card bg
@@ -24,10 +23,6 @@ $input-btn-focus-box-shadow: none;
 //$border-radius: 0rem;
 // $breadcrumb-bg: transparent;
 $alert-border-radius: 0rem;
-
-
-
-
 
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
@@ -43,7 +38,12 @@ label {
 }
 
 .d-flex {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         margin-bottom: 0;
     }
 }
