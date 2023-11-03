@@ -82,73 +82,73 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-
-
-<script>
-    function addLink() {
-        var html = '<div class="row">';
-        html += '<div class="col-md-4">';
-        html += '<div class="form-group mb-2">';
-        html += '<label for="link_name">{{ __('label.link_name') }}:</label>';
-        html += '<input type="text" name="links[name][]" class="form-control" required>';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="col-md-4">';
-        html += '<div class="form-group mb-2">';
-        html += '<label for="link_url">{{ __('label.link_url') }}:</label>';
-        html += '<input type="text" name="links[url][]" class="form-control" required>';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="col-md-4">';
-        html += '</div';
-        html += '</div>';
-        $('#linkList').append(html);
-    }
-
-    function deleteLink(id) {
-        <?php  if (isset($restaurant) && $restaurant->links->count() > 0) : ?>
-        var url = "{{ route('admin.restaurant.link.delete', [':IDrestaurant', ':id']) }}";
-        url = url.replace(':id', id);
-        url = url.replace(':IDrestaurant', {{ $restaurant->id }});
-        console.log(url);
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            data: {
-                _token: "{{ csrf_token() }}",
-            },
-            success: function(response) {
-                console.log(response.status);
-                if (response.status == 200) {
-                    $('#link_' + id).parent().parent().parent().remove();
-                }
-            }
-        });
-        <?php endif; ?>
-    }
-
-    function deleteLinkWithAxios(id) {
-        var confirmed = window.confirm('{{ __('label.are-you-sure') }}');
-        if (!confirmed) {
-            return;
+@section('scripts')
+    <script>
+        function addLink() {
+            var html = '<div class="row">';
+            html += '<div class="col-md-4">';
+            html += '<div class="form-group mb-2">';
+            html += '<label for="link_name">{{ __('label.link_name') }}:</label>';
+            html += '<input type="text" name="links[name][]" class="form-control" required>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="col-md-4">';
+            html += '<div class="form-group mb-2">';
+            html += '<label for="link_url">{{ __('label.link_url') }}:</label>';
+            html += '<input type="text" name="links[url][]" class="form-control" required>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="col-md-4">';
+            html += '</div';
+            html += '</div>';
+            $('#linkList').append(html);
         }
-        <?php  if (isset($restaurant) && $restaurant->links->count() > 0) : ?>
-        var url = "{{ route('admin.restaurant.link.delete', [':IDrestaurant', ':id']) }}";
-        url = url.replace(':id', id);
-        url = url.replace(':IDrestaurant', {{ $restaurant->id }});
-        console.log(url);
-        axios.delete(url, {
-                _token: "{{ csrf_token() }}",
-            })
-            .then(function(response) {
-                console.log(response);
-                if (response.status == 200) {
-                    $('#link_' + id).parent().parent().parent().remove();
+
+        function deleteLink(id) {
+            <?php  if (isset($restaurant) && $restaurant->links->count() > 0) : ?>
+            var url = "{{ route('admin.restaurant.link.delete', [':IDrestaurant', ':id']) }}";
+            url = url.replace(':id', id);
+            url = url.replace(':IDrestaurant', {{ $restaurant->id }});
+            console.log(url);
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    console.log(response.status);
+                    if (response.status == 200) {
+                        $('#link_' + id).parent().parent().parent().remove();
+                    }
                 }
-            })
-            .catch(function(error) {
-                console.log(error);
             });
-        <?php endif; ?>
-    }
-</script>
+            <?php endif; ?>
+        }
+
+        function deleteLinkWithAxios(id) {
+            var confirmed = window.confirm('{{ __('label.are-you-sure') }}');
+            if (!confirmed) {
+                return;
+            }
+            <?php  if (isset($restaurant) && $restaurant->links->count() > 0) : ?>
+            var url = "{{ route('admin.restaurant.link.delete', [':IDrestaurant', ':id']) }}";
+            url = url.replace(':id', id);
+            url = url.replace(':IDrestaurant', {{ $restaurant->id }});
+            console.log(url);
+            axios.delete(url, {
+                    _token: "{{ csrf_token() }}",
+                })
+                .then(function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
+                        $('#link_' + id).parent().parent().parent().remove();
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            <?php endif; ?>
+        }
+    </script>
+@endsection

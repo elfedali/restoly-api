@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id')->constrained();
-            $table->json('name');
-            $table->json('description')->nullable();
             $table->timestamps();
         });
 

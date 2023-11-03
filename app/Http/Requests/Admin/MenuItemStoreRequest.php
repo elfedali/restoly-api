@@ -21,9 +21,9 @@ class MenuItemStoreRequest extends FormRequest
     {
         return [
             'menu_category_id' => ['required', 'integer', 'exists:menu_categories,id'],
-            'name' => ['required', 'json'],
+            'name' => ['required', 'string'],
             'price' => ['required', 'numeric'],
-            'description' => ['nullable', 'json'],
+            'description' => ['nullable', 'string'],
         ];
     }
 }

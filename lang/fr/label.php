@@ -67,6 +67,7 @@ return [
     "updated_at" => "Mis à jour à",
     "deleted_at" => "Supprimé à",
     "created_by" => "Créé par",
+    "created" => "Créé",
     "updated_by" => "Mis à jour par",
     "deleted_by" => "Supprimé par",
     "go-back" => "Retourner",
@@ -165,13 +166,13 @@ return [
     'has-no-restaurant' => 'N\'a pas de restaurant',
 
     'status' => 'Statut',
-    'no-record-found'=> 'Aucun enregistrement trouvé',
-    'count'=> 'Nombre',
-    'results'=> 'Résultats',
-    'symbol'=> 'Symbole',
+    'no-record-found' => 'Aucun enregistrement trouvé',
+    'count' => 'Nombre',
+    'results' => 'Résultats',
+    'symbol' => 'Symbole',
 
-    'change-password'=> 'Changer le mot de passe',
-    'change-email'=> 'Changer l\'email',
+    'change-password' => 'Changer le mot de passe',
+    'change-email' => 'Changer l\'email',
 
 
 

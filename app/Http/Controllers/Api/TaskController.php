@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\TaskStoreRequest;
 use App\Http\Requests\Api\TaskUpdateRequest;
-use App\Http\Resources\Api\TaskCollection;
-use App\Http\Resources\Api\TaskResource;
+use App\Http\Resources\TaskCollection;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,7 +15,7 @@ class TaskController extends Controller
 {
     public function index(Request $request): TaskCollection
     {
-        $tasks = Task::all();
+        $tasks = Task::with(['user'])->get();
 
         return new TaskCollection($tasks);
     }

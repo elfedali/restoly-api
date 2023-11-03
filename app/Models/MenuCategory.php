@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class MenuCategory extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
+    public $translatable = ['name'];
+
+    protected $table = 'menu_categories';
     /**
      * The attributes that are mass assignable.
      *
@@ -35,6 +40,10 @@ class MenuCategory extends Model
     public function menuItems(): HasMany
     {
         return $this->hasMany(MenuItem::class);
+    }
+    public function items()
+    {
+        return $this->hasMany(MenuItem::class, 'menu_category_id');
     }
 
     public function menu(): BelongsTo

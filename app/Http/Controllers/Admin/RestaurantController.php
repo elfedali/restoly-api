@@ -86,18 +86,18 @@ class RestaurantController extends Controller
 
 
         // multiple images
-
-        foreach ($request->file('images') as $file) {
-            $uniqueFileName = uniqid() . '_' . time();
-            $path = $this->uploadFile($file, 'restaurants/' . $restaurant->id, 'public', $uniqueFileName);
-            $restaurant->images()->create([
-                'name' => $file->getClientOriginalName(),
-                'url' => $path
-            ]);
-            //$path = $this->saveFile($file, 'restaurants');
-            //$restaurant->images()->create(['path' => $path]);
-        }
-
+        if ($request->hasFile('images')) :
+            foreach ($request->file('images') as $file) {
+                $uniqueFileName = uniqid() . '_' . time();
+                $path = $this->uploadFile($file, 'restaurants/' . $restaurant->id, 'public', $uniqueFileName);
+                $restaurant->images()->create([
+                    'name' => $file->getClientOriginalName(),
+                    'url' => $path
+                ]);
+                //$path = $this->saveFile($file, 'restaurants');
+                //$restaurant->images()->create(['path' => $path]);
+            }
+        endif;
 
 
 
@@ -113,7 +113,15 @@ class RestaurantController extends Controller
 
     public function edit(Request $request, Restaurant $restaurant): View
     {
-        return view('admin.restaurant.edit', compact('restaurant'));
+
+        $menuCategories = $restaurant->menu->menuCategories()->with('menuItems')->get();
+        foreach ($menuCategories as $menuCategory) {
+            foreach ($menuCategory->menuItems as $menuItem) {
+                $menuItem->setTranslation('name', app()->getLocale(), $menuItem->name);
+                $menuItem->setTranslation('description', app()->getLocale(), $menuItem->description);
+            }
+        }
+        return view('admin.restaurant.edit', compact('restaurant', 'menuCategories'));
     }
 
     public function update(RestaurantUpdateRequest $request, Restaurant $restaurant): RedirectResponse

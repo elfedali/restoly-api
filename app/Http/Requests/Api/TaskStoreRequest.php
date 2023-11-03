@@ -23,6 +23,7 @@ class TaskStoreRequest extends FormRequest
             'name' => ['required', 'string', 'max:50'],
             'description' => ['nullable', 'string'],
             'is_done' => ['required'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 }

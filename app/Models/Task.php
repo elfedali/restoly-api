@@ -19,6 +19,7 @@ class Task extends Model
         'name',
         'description',
         'is_done',
+        'user_id',
     ];
 
     /**
@@ -29,6 +30,7 @@ class Task extends Model
     protected $casts = [
         'id' => 'integer',
         'is_done' => 'boolean',
+        'user_id' => 'integer',
     ];
 
     public function user(): BelongsTo

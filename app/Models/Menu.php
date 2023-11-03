@@ -11,6 +11,8 @@ class Menu extends Model
 {
     use HasFactory;
 
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,10 +20,9 @@ class Menu extends Model
      */
     protected $fillable = [
         'restaurant_id',
-        'name',
-        'description',
-    ];
 
+    ];
+    protected $table = 'menus';
     /**
      * The attributes that should be cast to native types.
      *
@@ -30,13 +31,28 @@ class Menu extends Model
     protected $casts = [
         'id' => 'integer',
         'restaurant_id' => 'integer',
-        'name' => 'array',
-        'description' => 'array',
+
     ];
 
     public function menuCategories(): HasMany
     {
         return $this->hasMany(MenuCategory::class);
+    }
+    public function categories()
+    {
+        return $this->hasMany(MenuCategory::class, 'menu_id');
+    }
+    public function items()
+    {
+        return $this->hasManyThrough(
+            MenuItem::class,
+            MenuCategory::class,
+            'menu_id',
+            'menu_category_id',
+            'id',
+            'id'
+
+        );
     }
 
     public function restaurant(): BelongsTo

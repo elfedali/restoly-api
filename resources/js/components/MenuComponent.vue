@@ -1,58 +1,85 @@
 <template>
-    <div class="card mt-4">
-        <div class="card-header bg-primary">
-            <h5>Menu</h5>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-        <form >
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" v-model="menu.name" id="name" placeholder="Enter name">
-            </div>
-            <div class="form-group">
-                <label for="url">URL</label>
-                <input type="text" class="form-control" v-model="menu.url" id="url" placeholder="Enter url">
-            </div>
-            <div class="form-group">
-                <label for="icon">Icon</label>
-                <input type="text" class="form-control" v-model="menu.icon" id="icon" placeholder="Enter icon">
-            </div>
-            <div class="form-group">
-                <label for="parent_id">Parent</label>
-                <select class="form-control" v-model="menu.parent_id" id="parent_id">
-                    <option value="">Select parent</option>
-                    <option v-for="menu in menus" :key="menu.id" :value="menu.id">@{{ menu.name }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="order">Order</label>
-                <input type="number" class="form-control" v-model="menu.order" id="order" placeholder="Enter order">
-            </div>
-            <div class="form-group">
-                <label for="active">Active</label>
-                <select class="form-control" v-model="menu.active" id="active">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-            </div>
-            <button type="button" class="btn btn-primary" >Save</button>
-        </form>
-        </div>
-        <!-- /.card-body -->
+  <div class="card mt-4">
+    <div class="card-header bg-primary">
+      <h5>Menu editor</h5>
     </div>
-    <!-- /.card mb-3 -->
-
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <MenuCategory
+            :id="id"
+            @menu-category-added="getMenuCategories"
+          ></MenuCategory>
+          <hr />
+          <MenuItem
+            :menuCategories="menuCategories"
+            @menu-item-added="getMenuItems"
+          ></MenuItem>
+        </div>
+        <!-- /.col-6 -->
+        <div class="col-6">
+          <MenuList
+            :menuItems="menuItems"
+            @menu-item-deleted="getMenuItems"
+          ></MenuList>
+        </div>
+        <!-- /.col-6 -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+  <!-- /.card mb-3 -->
 </template>
 
 <script>
+import MenuCategory from "./menu/MenuCategoryComponent.vue";
+import MenuItem from "./menu/MenuItemComponent.vue";
+import MenuList from "./menu/MenuListComponent.vue";
 export default {
-    mounted() {
-        console.log('Component menu mounted.')
-    }
-}
+  components: {
+    MenuCategory,
+    MenuItem,
+    MenuList,
+  },
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      menuItems: [],
+      menuCategories: [],
+    };
+  },
+  methods: {
+    getMenuCategories() {
+      axios
+        .get("/api/menu-category/" + this.id)
+        .then((response) => {
+          this.menuCategories = response.data.menu_categories;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getMenuItems() {
+      axios
+        .get("/api/menu-item/" + this.id)
+        .then((response) => {
+          this.menuItems = response.data.menu_items;
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  created() {
+    this.getMenuCategories();
+    console.log("MenuComponent.vue created");
+    this.getMenuItems();
+  },
+};
 </script>
-
-<style>
-
-</style>

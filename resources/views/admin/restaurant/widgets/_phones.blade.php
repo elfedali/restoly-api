@@ -54,60 +54,61 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card mt-4 -->
-
-<script>
-    function addPhone() {
-        var html = '<div class="form-group mb-2">';
-        html += '<label for="phone">{{ __('label.phone') }}:</label>';
-        html += '<input type="text" name="phones[]" class="form-control" required>';
-        html += '</div>';
-        $('#phoneNumbers').append(html);
-    }
-
-    function deletePhone(id) {
-        <?php  if (isset($restaurant) && $restaurant->phones->count() > 0) : ?>
-        var url = "{{ route('admin.restaurant.phone.delete', [':IDrestaurant', ':id']) }}";
-        url = url.replace(':id', id);
-        url = url.replace(':IDrestaurant', {{ $restaurant->id }});
-        console.log(url);
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            data: {
-                _token: "{{ csrf_token() }}",
-            },
-            success: function(response) {
-                console.log(response.status);
-                if (response.status == 200) {
-                    $('#phone_' + id).parent().parent().remove();
-                }
-            }
-        });
-        <?php endif; ?>
-    }
-
-    function deletePhoneWithAxios(id) {
-        var confirmed = window.confirm('{{ __('label.are-you-sure') }}');
-        if (!confirmed) {
-            return;
+@section('scipts')
+    <script>
+        function addPhone() {
+            var html = '<div class="form-group mb-2">';
+            html += '<label for="phone">{{ __('label.phone') }}:</label>';
+            html += '<input type="text" name="phones[]" class="form-control" required>';
+            html += '</div>';
+            $('#phoneNumbers').append(html);
         }
-        <?php  if (isset($restaurant) && $restaurant->phones->count() > 0) : ?>
-        var url = "{{ route('admin.restaurant.phone.delete', [':IDrestaurant', ':id']) }}";
-        url = url.replace(':id', id);
-        url = url.replace(':IDrestaurant', {{ $restaurant->id }});
-        console.log(url);
-        axios.delete(url, {
-                _token: "{{ csrf_token() }}",
-            })
-            .then(function(response) {
-                console.log(response);
-                if (response.status == 200) {
-                    $('#phone_' + id).parent().parent().parent().remove();
+
+        function deletePhone(id) {
+            <?php  if (isset($restaurant) && $restaurant->phones->count() > 0) : ?>
+            var url = "{{ route('admin.restaurant.phone.delete', [':IDrestaurant', ':id']) }}";
+            url = url.replace(':id', id);
+            url = url.replace(':IDrestaurant', {{ $restaurant->id }});
+            console.log(url);
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    console.log(response.status);
+                    if (response.status == 200) {
+                        $('#phone_' + id).parent().parent().remove();
+                    }
                 }
-            })
-            .catch(function(error) {
-                console.log(error);
             });
-        <?php endif; ?>
-    }
-</script>
+            <?php endif; ?>
+        }
+
+        function deletePhoneWithAxios(id) {
+            var confirmed = window.confirm('{{ __('label.are-you-sure') }}');
+            if (!confirmed) {
+                return;
+            }
+            <?php  if (isset($restaurant) && $restaurant->phones->count() > 0) : ?>
+            var url = "{{ route('admin.restaurant.phone.delete', [':IDrestaurant', ':id']) }}";
+            url = url.replace(':id', id);
+            url = url.replace(':IDrestaurant', {{ $restaurant->id }});
+            console.log(url);
+            axios.delete(url, {
+                    _token: "{{ csrf_token() }}",
+                })
+                .then(function(response) {
+                    console.log(response);
+                    if (response.status == 200) {
+                        $('#phone_' + id).parent().parent().parent().remove();
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            <?php endif; ?>
+        }
+    </script>
+@endsection

@@ -1,10 +1,10 @@
 models:
-  Task:
-    name: string:50
-    description: text nullable
-    is_done: boolean default:false
-    relationships:
-      belongsTo: User
+  # Task:
+  #   name: string:50
+  #   description: text nullable
+  #   is_done: boolean default:false
+  #   relationships:
+  #     belongsTo: User
 #   Language:
 #     name: json
 #     slug: string:30 unique
@@ -156,8 +156,10 @@ models:
 # seeders: Category,Service,City,District, Country, Setting,Language
 
 controllers:
-  Api/Task:
-    resource: api
+Api/MenuCategory:
+  resource: api
+  # Api/Task:
+  #   resource: api
 #   Admin/Language:                                  <
 #     resource
 #   Admin/Currency:

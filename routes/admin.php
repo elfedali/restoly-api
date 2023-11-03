@@ -87,15 +87,15 @@ Route::delete('restaurant/{restaurant}/link/{link}', function (\App\Models\Resta
 })->name('admin.restaurant.link.delete');
 
 
-Route::resource('menu', App\Http\Controllers\Admin\MenuController::class)->names('admin.menu');
+//Route::resource('menu', App\Http\Controllers\Admin\MenuController::class)->names('admin.menu');
 
-Route::resource('menu-category', App\Http\Controllers\Admin\MenuCategoryController::class)->names('admin.menu-category');
+//Route::resource('menu-category', App\Http\Controllers\Admin\MenuCategoryController::class)->names('admin.menu-category');
 
-Route::resource('menu-item', App\Http\Controllers\Admin\MenuItemController::class)->names('admin.menu-item');
+//Route::resource('menu-item', App\Http\Controllers\Admin\MenuItemController::class)->names('admin.menu-item');
 
-Route::resource('salle', App\Http\Controllers\Admin\SalleController::class)->names('admin.salle');
+//Route::resource('salle', App\Http\Controllers\Admin\SalleController::class)->names('admin.salle');
 
-Route::resource('table', App\Http\Controllers\Admin\TableController::class)->names('admin.table');
+//Route::resource('table', App\Http\Controllers\Admin\TableController::class)->names('admin.table');
 
 Route::resource('reservation', App\Http\Controllers\Admin\ReservationController::class)->names('admin.reservation');
 
@@ -110,15 +110,15 @@ Route::resource('link', App\Http\Controllers\Admin\LinkController::class)->names
 Route::resource('setting', App\Http\Controllers\Admin\SettingController::class)->names('admin.setting');
 
 Route::resource('user', App\Http\Controllers\Admin\UserController::class)
-    ->except(['edit','destroy'])
+    ->except(['edit', 'destroy'])
     ->names('admin.user');
 
-Route::put('user/{user}/update-password', [App\Http\Controllers\Admin\UserPasswordChange::class, 'index'])->name('admin.user.update-password');    
+Route::put('user/{user}/update-password', [App\Http\Controllers\Admin\UserPasswordChange::class, 'index'])->name('admin.user.update-password');
 Route::put('user/{user}/toggle', function (App\Models\User $user) {
     $user->is_active = !$user->is_active;
     $user->save();
     return redirect()->route('admin.user.show', $user->id)->with('success', 'User updated successfully.');
 })->name('admin.user.toggle');
 // email
-Route::put('user/{user}/update-email',[App\Http\Controllers\Admin\UserEmailChangeController::class, 'index'])->name('admin.user.update-email');
-Route::delete('user/{user}/delete',[App\Http\Controllers\Admin\UserDeleteController::class, 'index'])->name('admin.user.delete-user');
+Route::put('user/{user}/update-email', [App\Http\Controllers\Admin\UserEmailChangeController::class, 'index'])->name('admin.user.update-email');
+Route::delete('user/{user}/delete', [App\Http\Controllers\Admin\UserDeleteController::class, 'index'])->name('admin.user.delete-user');

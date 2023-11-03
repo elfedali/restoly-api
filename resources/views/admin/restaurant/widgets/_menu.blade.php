@@ -4,7 +4,21 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        Menu
+        <div class="card-body">
+
+
+            @if (isset($restaurant))
+                @if ($restaurant->menu and $restaurant->menu->menuCategories)
+                    @foreach ($restaurant->menu->menuCategories as $menu_category)
+                        <div>
+                            {{ $menu_category->name }}
+                        </div>
+                    @endforeach
+                @endif
+            @endif
+
+        </div>
+
     </div>
     <!-- /.card-body -->
 </div>

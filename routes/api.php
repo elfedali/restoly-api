@@ -22,4 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('task', App\Http\Controllers\Admin\TaskController::class);
 
 
-Route::apiResource('task', App\Http\Controllers\Api\TaskController::class);
+Route::get('menu-category/{restaurant}', [App\Http\Controllers\Api\MenuCategoryController::class, 'index']);
+Route::post('menu-category', [App\Http\Controllers\Api\MenuCategoryController::class, 'store']);
+
+Route::get('menu-item/{restaurant}', [App\Http\Controllers\Api\MenuItemController::class, 'index']);
+Route::post('menu-item', [App\Http\Controllers\Api\MenuItemController::class, 'store']);
+//Route::put('menu-item/{menuItem}', [App\Http\Controllers\Api\MenuItemController::class, 'update']);
+Route::delete('menu-item/{menuItem}', [App\Http\Controllers\Api\MenuItemController::class, 'destroy']);
