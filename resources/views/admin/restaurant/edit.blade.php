@@ -35,6 +35,7 @@
                     @include('admin.restaurant.widgets.category', ['restaurant' => $restaurant])
                     @include('admin.restaurant.widgets.service', ['restaurant' => $restaurant])
                     @include('admin.restaurant.widgets.district', ['restaurant' => $restaurant])
+                    <phone-component :id="{{ $restaurant->id }}"></phone-component>
                 </div>
                 <!-- /.col-lg-4 -->
             </div>

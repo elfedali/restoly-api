@@ -36,3 +36,8 @@ Route::delete('menu-item/{menuItem}', [App\Http\Controllers\Api\MenuItemControll
 Route::get('restaurants/{restaurant}/images', [App\Http\Controllers\Api\UploadImagesController::class, 'index'])->name('restaurants.images');
 Route::post('restaurants/{restaurant}/images', [App\Http\Controllers\Api\UploadImagesController::class, 'store'])->name('restaurants.images.store');
 Route::delete('restaurants/images/{image}', [App\Http\Controllers\Api\UploadImagesController::class, 'destroy'])->name('restaurants.images.destroy');
+
+// phone
+Route::get('restaurants/{restaurant}/phones', [App\Http\Controllers\Api\PhoneController::class, 'index'])->name('restaurants.phones');
+Route::post('restaurants/{restaurant}/phones', [App\Http\Controllers\Api\PhoneController::class, 'store'])->name('restaurants.phones.store');
+Route::delete('restaurants/phones/{phone}', [App\Http\Controllers\Api\PhoneController::class, 'destroy'])->name('restaurants.phones.destroy');

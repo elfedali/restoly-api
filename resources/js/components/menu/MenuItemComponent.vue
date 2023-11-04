@@ -1,11 +1,14 @@
 <template>
   <div>
+    <p>Ajouter un plat a la catégorie</p>
     <!-- message error -->
     <div v-if="errors && errors.length > 0" class="alert alert-danger">
       {{ errors }}
     </div>
     <div class="mb-3">
-      <label for="menu_category_id">Menu Category</label>
+      <label for="menu_category_id">
+        Catégorie de menu <span class="text-danger">*</span>
+      </label>
       <select
         class="form-select"
         id="menu_category_id"
@@ -22,7 +25,9 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="name">Name</label>
+      <label for="name">
+        Le nom du plat<span class="text-danger">*</span>
+      </label>
       <input
         type="text"
         class="form-control"
@@ -31,7 +36,10 @@
       />
     </div>
     <div class="mb-3">
-      <label for="price">Price</label>
+      <label for="price">
+        Prix en (DH) du plat <span class="text-danger">*</span>
+        <span class="text-muted"> (ex: 10.50) </span>
+      </label>
       <input
         type="text"
         class="form-control"
@@ -40,16 +48,18 @@
       />
     </div>
     <div class="mb-3">
-      <label for="description">Description</label>
+      <label for="description"> Description du plat </label>
       <textarea
         class="form-control"
         id="description"
         v-model="menuItem.description"
       ></textarea>
     </div>
-    <button class="btn btn-outline-primary" @click="addMenuItem">
-      Add Menu Item
-    </button>
+    <div class="text-end">
+      <button class="btn btn-outline-primary" @click="addMenuItem">
+        Ajouter
+      </button>
+    </div>
   </div>
 </template>
 

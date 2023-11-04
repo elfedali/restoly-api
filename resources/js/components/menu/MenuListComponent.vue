@@ -10,9 +10,10 @@
         <table class="table table-hover table-responsive table-sm">
           <thead>
             <tr>
-              <th scope="col">Item</th>
-              <th scope="col" width="10%">Price</th>
-              <th scope="col" width="10%">Delete</th>
+              <th scope="col">le plat</th>
+              <th scope="col">Description</th>
+              <th scope="col" width="10%">Prix</th>
+              <th scope="col" width="120">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -22,6 +23,9 @@
               </td>
 
               <td>
+                <span>{{ item.description }}</span>
+              </td>
+              <td>
                 <span>{{ item.price }}</span>
               </td>
               <td class="text-end">
@@ -30,7 +34,7 @@
                   class="btn btn-danger btn-sm"
                   @click="deleteItem(item)"
                 >
-                  <i class="bi bi-trash"></i>
+                  Supprimer
                 </button>
               </td>
             </tr>

@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col-6">
+        <div class="col-4">
           <MenuCategory
             :id="id"
             @menu-category-added="getMenuCategories"
@@ -17,7 +17,7 @@
           ></MenuItem>
         </div>
         <!-- /.col-6 -->
-        <div class="col-6">
+        <div class="col-8">
           <MenuList
             :menuItems="menuItems"
             @menu-item-deleted="getMenuItems"

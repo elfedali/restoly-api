@@ -54,10 +54,16 @@
                                     <tr>
                                         <td>{{ $restaurant->id }}</td>
                                         <td>
-                                            <div>{{ $restaurant->name }}</div>
                                             <div>
-                                                <small><small>{{ $restaurant->slug }}</small></small>
+                                                <a href="{{ route('admin.restaurant.edit', $restaurant) }}">
+                                                    {{-- <img src="{{ $restaurant->image }}" alt="{{ $restaurant->name }}"
+                                                        class="img-fluid rounded" width="50"> --}}
+                                                    {{ $restaurant->name }}
+                                                </a>
+
+
                                             </div>
+
                                         </td>
 
                                         <td>{{ $restaurant->owner->fullName() }}</td>

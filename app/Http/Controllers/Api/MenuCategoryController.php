@@ -12,6 +12,7 @@ class MenuCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request, Restaurant $restaurant)
 
     {
@@ -28,10 +29,12 @@ class MenuCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // todo :: make it better
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
             'id_restaurant' => ['required', 'exists:restaurants,id'],
         ]);
         $restaurant = \App\Models\Restaurant::find($request->id_restaurant);
