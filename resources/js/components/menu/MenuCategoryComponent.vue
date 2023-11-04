@@ -6,7 +6,9 @@
       placeholder="Menu catgeory"
       v-model="menu_category"
     />
-    <button class="btn btn-primary mt-2" @click="addMenuCategory">Add</button>
+    <button class="btn btn-outline-primary mt-2" @click="addMenuCategory">
+      Add Menu Category
+    </button>
   </div>
 </template>
 

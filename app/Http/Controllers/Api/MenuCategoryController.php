@@ -78,8 +78,9 @@ class MenuCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(\App\Models\MenuCategory $menuCategory)
     {
-        //
+        $menuCategory->delete();
+        return response()->json(['message' => 'Menu category deleted successfully'], 200);
     }
 }

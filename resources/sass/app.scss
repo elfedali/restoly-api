@@ -2,7 +2,7 @@
 
 // $font-family-sans-serif: "Manrope", sans-serif;
 // 14px en rem
-$font-size-base: 0.875rem;
+//$font-size-base: 0.875rem;
 //$primary: ;
 // $dark: #000;
 //$red: lightcoral;
@@ -46,4 +46,16 @@ label {
     h6 {
         margin-bottom: 0;
     }
+}
+
+// sr-only
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

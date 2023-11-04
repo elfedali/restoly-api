@@ -174,7 +174,7 @@ return [
     'change-password' => 'Changer le mot de passe',
     'change-email' => 'Changer l\'email',
 
-
+    'seo' => 'Optimisation pour les moteurs de recherche',
 
 
 

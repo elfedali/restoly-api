@@ -4,7 +4,7 @@
       <div
         v-for="menu_category in menuItems"
         :key="menu_category.id"
-        class="-bg-light mb-3 p-2 rounded"
+        class="bg-light mb-3 p-2 rounded"
       >
         <h5 class="text-underline">{{ menu_category.category_name }}</h5>
         <table class="table table-hover table-responsive table-sm">
@@ -39,8 +39,8 @@
       </div>
     </section>
     <section v-else>
-      <div class="alert alert-info">
-        <h5 class="text-center">No menu items yet.</h5>
+      <div class="text-muted">
+        <p><u>No menu items yet.</u></p>
       </div>
     </section>
   </div>
@@ -63,7 +63,7 @@ export default {
       axios
         .delete("/api/menu-item/" + item.id)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           this.$emit("menu-item-deleted", response.data);
         })
         .catch((error) => {

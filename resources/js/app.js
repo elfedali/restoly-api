@@ -17,9 +17,11 @@ const app = createApp({});
 
 import ExampleComponent from "./components/ExampleComponent.vue";
 import MenuComponent from "./components/MenuComponent.vue";
+import UploadImagesComponent from "./components/UploadImagesComponent.vue";
 
 app.component("example-component", ExampleComponent);
 app.component("menu-component", MenuComponent);
+app.component("upload-images-component", UploadImagesComponent);
 
 /**
  * The following block of code may be used to automatically register your

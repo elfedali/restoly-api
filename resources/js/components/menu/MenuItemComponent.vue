@@ -47,7 +47,9 @@
         v-model="menuItem.description"
       ></textarea>
     </div>
-    <button class="btn btn-primary" @click="addMenuItem">Add</button>
+    <button class="btn btn-outline-primary" @click="addMenuItem">
+      Add Menu Item
+    </button>
   </div>
 </template>
 

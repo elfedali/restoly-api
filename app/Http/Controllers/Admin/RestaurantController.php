@@ -17,6 +17,7 @@ class RestaurantController extends Controller
     use  FileUploaderTrait;
     public function index(Request $request): View
     {
+        // todo:: with users categories services
         $restaurants = Restaurant::all()->sortByDesc('id');
 
         return view('admin.restaurant.index', compact('restaurants'));
@@ -85,25 +86,14 @@ class RestaurantController extends Controller
         }
 
 
-        // multiple images
-        if ($request->hasFile('images')) :
-            foreach ($request->file('images') as $file) {
-                $uniqueFileName = uniqid() . '_' . time();
-                $path = $this->uploadFile($file, 'restaurants/' . $restaurant->id, 'public', $uniqueFileName);
-                $restaurant->images()->create([
-                    'name' => $file->getClientOriginalName(),
-                    'url' => $path
-                ]);
-                //$path = $this->saveFile($file, 'restaurants');
-                //$restaurant->images()->create(['path' => $path]);
-            }
-        endif;
 
 
 
 
+        // redirect to restaurant edit page
 
-        return redirect()->route('admin.restaurant.index')->with('success', 'Restaurant created successfully.');
+
+        return redirect()->route('admin.restaurant.edit', $restaurant)->with('success', 'Restaurant created successfully.');
     }
 
     // public function show(Request $request, Restaurant $restaurant): View
@@ -114,14 +104,7 @@ class RestaurantController extends Controller
     public function edit(Request $request, Restaurant $restaurant): View
     {
 
-        $menuCategories = $restaurant->menu->menuCategories()->with('menuItems')->get();
-        foreach ($menuCategories as $menuCategory) {
-            foreach ($menuCategory->menuItems as $menuItem) {
-                $menuItem->setTranslation('name', app()->getLocale(), $menuItem->name);
-                $menuItem->setTranslation('description', app()->getLocale(), $menuItem->description);
-            }
-        }
-        return view('admin.restaurant.edit', compact('restaurant', 'menuCategories'));
+        return view('admin.restaurant.edit', compact('restaurant'));
     }
 
     public function update(RestaurantUpdateRequest $request, Restaurant $restaurant): RedirectResponse
@@ -138,7 +121,16 @@ class RestaurantController extends Controller
 
     public function destroy(Request $request, Restaurant $restaurant): RedirectResponse
     {
-        $restaurant->delete();
+        try {
+            $restaurant->delete();
+            // delete images
+            foreach ($restaurant->images as $image) {
+                $this->deleteFile($image->url, 'public');
+                $image->delete();
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('admin.restaurant.index')->with('error', 'Restaurant deleted failed.');
+        }
 
         return redirect()->route('admin.restaurant.index');
     }

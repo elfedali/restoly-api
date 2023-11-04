@@ -15,6 +15,7 @@ class Image extends Model
      *
      * @var array
      */
+
     protected $fillable = [
         'name',
         'url',
@@ -34,5 +35,10 @@ class Image extends Model
     public function imageable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function path()
+    {
+        return asset('storage/' . $this->url);
     }
 }

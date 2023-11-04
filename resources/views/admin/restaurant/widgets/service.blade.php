@@ -13,7 +13,7 @@
                 <input type="checkbox" name="services[]" id="service_{{ $service->id }}" value="{{ $service->id }}"
                     class="form-check-input @error('services') is-invalid @enderror"
                     @if (isset($restaurant) && $restaurant->services->contains($service->id)) checked @endif>
-                <label for="service_{{ $service->id }}" class="form-check-label">{{ $service->name }}</label>
+                <label for="service_{{ $service->id }}" class="form-check-label"> {{ $service->name }}</label>
                 @error('services')
                     <div id="servicesHelp" class="form-text text-danger">{{ $message }}</div>
                 @enderror

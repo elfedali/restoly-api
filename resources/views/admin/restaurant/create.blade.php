@@ -16,26 +16,14 @@
         <form action="{{ route('admin.restaurant.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-xlg-10 col-lg-9">
+                <div class="col-xlg-12 col-lg-12">
 
-                    @include('admin.restaurant._form')
-                    @include('admin.restaurant.widgets._menu')
-                    <menu-component></menu-component>
-                    @include('admin.restaurant.widgets._salles')
-                    @include('admin.restaurant.widgets._images')
-                    @include('admin.restaurant.widgets._links')
-                    @include('admin.restaurant.widgets._phones')
-                    @include('admin.restaurant._seo_form')
+                    @include('admin.restaurant.widgets.general')
+                    @include('admin.restaurant.widgets.owner')
+                    <div class="mt-4"></div>
+                    @include('admin.restaurant.widgets.publish')
                 </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-xlg-2 col-lg-3">
-                    @include('admin.restaurant._widget_publish')
-                    @include('admin.restaurant._widget_owner')
-                    @include('admin.restaurant._widget_category')
-                    @include('admin.restaurant._widget_service')
-                    @include('admin.restaurant._widget_district')
-                </div>
-                <!-- /.col-lg-4 -->
+
             </div>
             <!-- /.row -->
         </form>

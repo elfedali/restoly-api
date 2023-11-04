@@ -6,13 +6,13 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center mb-3">
                     {{-- title --}}
                     <h1 class="h4">
                         {{ __('label.restaurants') }}
                     </h1>
                     {{-- create new restaurant --}}
-                    <a class="btn btn-outline-primary" href="{{ route('admin.restaurant.create') }}">
+                    <a class="mx-3 btn btn-sm btn-outline-primary" href="{{ route('admin.restaurant.create') }}">
                         <i class="bi bi-plus-circle me-1"></i>
                         {{ __('label.create') }}
                     </a>
@@ -40,22 +40,26 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>{{ __('label.id') }}</th>
+                                    <th width="5%">{{ __('label.id') }}</th>
                                     <th>{{ __('label.name') }}</th>
-                                    <th>{{ __('label.slug') }}</th>
                                     <th>{{ __('label.owner') }}</th>
                                     <th>{{ __('label.active') }}</th>
                                     <th>{{ __('label.created_at') }}</th>
-                                    <th>{{ __('label.updated_at') }}</th>
-                                    <th>{{ __('label.actions') }}</th>
+                                    {{-- <th>{{ __('label.updated_at') }}</th> --}}
+                                    <th class="text-end">{{ __('label.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($restaurants as $restaurant)
                                     <tr>
                                         <td>{{ $restaurant->id }}</td>
-                                        <td><b>{{ $restaurant->name }}</b></td>
-                                        <td>{{ $restaurant->slug }}</td>
+                                        <td>
+                                            <div>{{ $restaurant->name }}</div>
+                                            <div>
+                                                <small><small>{{ $restaurant->slug }}</small></small>
+                                            </div>
+                                        </td>
+
                                         <td>{{ $restaurant->owner->fullName() }}</td>
                                         <td>
                                             @if ($restaurant->is_active)
@@ -65,9 +69,9 @@
                                             @endif
                                         </td>
                                         <td>{{ $restaurant->created_at }}</td>
-                                        <td>{{ $restaurant->updated_at }}</td>
-                                        <td>
-                                            <div class="d-flex">
+                                        {{-- <td>{{ $restaurant->updated_at }}</td> --}}
+                                        <td class="text-end">
+                                            <div class="d-flex justify-content-end">
                                                 {{-- edit btn --}}
                                                 <a href="{{ route('admin.restaurant.edit', $restaurant) }}"
                                                     class="btn btn-sm btn-primary me-2">

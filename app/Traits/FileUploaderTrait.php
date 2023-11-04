@@ -28,8 +28,7 @@ trait FileUploaderTrait
     {
         if (Storage::disk($disk)->exists($file)) {
             return Storage::disk($disk)->delete($file);
-        }
-        return false;
+        } else throw new \Exception('File does not exist', 404);
     }
 
     public function deleteFiles($files, $disk = 'public')

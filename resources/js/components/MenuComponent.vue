@@ -1,6 +1,6 @@
 <template>
   <div class="card mt-4">
-    <div class="card-header bg-primary">
+    <div class="card-header">
       <h5>Menu editor</h5>
     </div>
     <div class="card-body">

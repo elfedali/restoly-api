@@ -6,10 +6,11 @@
      <div class="card-body">
          {{-- is_active  select --}}
          <div class="mb-3">
+             {{-- todo:: transform this to on/off button --}}
              <label for="is_active" class="form-label">{{ __('label.active') }}</label>
              <select class="form-select @error('is_active') is-invalid @enderror" id="is_active" name="is_active">
                  {{-- default option --}}
-                 <option>{{ __('label.select') }}</option>
+                 <option selected disabled>{{ __('label.select') }}</option>
                  <option value="0" {{ isset($restaurant) && $restaurant->is_active == 0 ? 'selected' : '' }}
                      {{-- {{ old('is_active') == 0 ? 'selected' : '' }} --}}> {{ __('label.no') }}</option>
                  <option value="1" {{ isset($restaurant) && $restaurant->is_active == 1 ? 'selected' : '' }}
@@ -22,23 +23,31 @@
          </div>
 
          {{-- created_at --}}
-         <div>
-             {{ __('label.created_at') }}: {{ isset($restaurant) ? $restaurant->created_at : '' }}
-         </div>
-         <div>
-             {{ __('label.updated_at') }}: {{ isset($restaurant) ? $restaurant->updated_at : '' }}
-         </div>
-         {{-- createdby_id --}}
-         <div>
-             {{ __('label.created_by') }}:
-             {!! isset($restaurant) ? '<b>' . $restaurant->createdBy->fullName() . '</b>' : '' !!}
-         </div>
+         @if (isset($restaurant))
+             <div>
+                 {{ __('label.created_at') }}: {{ isset($restaurant) ? $restaurant->created_at : '' }}
+             </div>
+             <div>
+                 {{ __('label.updated_at') }}: {{ isset($restaurant) ? $restaurant->updated_at : '' }}
+             </div>
 
+             <div>
+                 {{ __('label.created_by') }}:
+                 {!! isset($restaurant) ? '<b>' . $restaurant->createdBy->fullName() . '</b>' : '' !!}
+             </div>
+         @endif
 
      </div>
      <!-- /.card-body -->
      <div class="card-footer text-end">
-         <button type="submit" class="btn btn-primary btn-block">{{ __('label.publish') }}</button>
+         <button type="submit" class="btn btn-primary btn-block">
+             @if (isset($restaurant))
+                 {{ __('label.update') }}
+             @else
+                 {{ __('label.create') }}
+             @endif
+
+         </button>
      </div>
  </div>
  <!-- /.card -->
