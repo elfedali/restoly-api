@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h5>
+                <h2>
                     {{ __('label.new_restaurant') }}
-                </h5>
+                </h2>
             </div>
             <!-- /.col-12 -->
         </div>

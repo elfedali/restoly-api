@@ -12,6 +12,10 @@
               <!-- Left Side Of Navbar -->
               <ul class="navbar-nav me-auto">
                   <li class="nav-item">
+                      <a class="nav-link @if (request()->routeIs('admin.dashboard')) active @endif"
+                          href="{{ route('admin.dashboard') }}">{{ __('label.dashboard') }}</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="nav-link @if (request()->routeIs('admin.country.*')) active @endif"
                           href="{{ route('admin.country.index') }}">{{ __('label.countries') }}</a>
                   </li>

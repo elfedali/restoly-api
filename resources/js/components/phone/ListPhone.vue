@@ -36,6 +36,12 @@ export default {
   },
   methods: {
     deletePhone(id) {
+      let confirmDelete = confirm(
+        "Tu es sûr de vouloir supprimer ce numéro de téléphone ?"
+      );
+      if (!confirmDelete) {
+        return;
+      }
       axios
         .delete("/api/restaurants/phones/" + id)
         .then((response) => {

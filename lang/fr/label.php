@@ -176,6 +176,15 @@ return [
 
     'seo' => 'Optimisation pour les moteurs de recherche',
 
+    'general' => 'Général',
+    'menu' => 'Menu',
+    'reviews' => 'Avis',
+    'media' => 'Média',
+    'photos' => 'Photos',
+    'of' => 'de',
+    'phone' => 'Téléphone',
+    'phones' => 'Téléphones',
+
 
 
 ];
