@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(400)->create();
 
         \App\Models\User::factory()->create([
             'first_name' => 'Abdessamad',
@@ -26,6 +25,8 @@ class DatabaseSeeder extends Seeder
             'role' => \App\Models\User::ROLE_ADMIN,
             'bio' => 'I am the admin of this website.',
         ]);
+
+        \App\Models\User::factory(9)->create();
 
         $this->call(CategorySeeder::class);
         $this->call(CountrySeeder::class);

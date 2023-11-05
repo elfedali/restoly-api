@@ -46,6 +46,12 @@
                         @lang('label.phones')
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="address-tab" data-bs-toggle="tab" data-bs-target="#address-tab-pane"
+                        type="button" role="tab" aria-controls="address-tab-pane" aria-selected="false">
+                        @lang('label.address')
+                    </button>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="general-tab-pane" role="tabpanel" aria-labelledby="general-tab"
@@ -96,8 +102,13 @@
                 <div class="tab-pane fade" id="photos-tab-pane" role="tabpanel" aria-labelledby="photos-tab" tabindex="0">
                     <upload-images-component :id="{{ $restaurant->id }}"></upload-images-component>
                 </div>
-                <div class="tab-pane fade" id="phones-tab-pane" role="tabpanel" aria-labelledby="phones-tab" tabindex="0">
+                <div class="tab-pane fade" id="phones-tab-pane" role="tabpanel" aria-labelledby="phones-tab"
+                    tabindex="0">
                     <phone-component :id="{{ $restaurant->id }}"></phone-component>
+                </div>
+                <div class="tab-pane fade" id="address-tab-pane" role="tabpanel" aria-labelledby="address-tab"
+                    tabindex="0">
+                    <address-component :id="{{ $restaurant->id }}"></address-component>
                 </div>
             </div>
         </div>

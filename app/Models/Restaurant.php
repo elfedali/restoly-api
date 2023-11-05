@@ -30,6 +30,11 @@ class Restaurant extends Model
         'owner_id',
         // 'district_id',
         'address',
+        'zip_code',
+        'city',
+        'country',
+        'district',
+
         // 'approvedby_id',
         // 'approved_at',
         'createdby_id',

@@ -20,11 +20,12 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
+        $randomUserId = \App\Models\User::inRandomOrder()->first()->id;
         return [
             'name' => 'Task ' . Str::random(5),
             'description' => 'Change the world ' . Str::random(10),
             'is_done' => $this->faker->boolean,
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => $randomUserId,
         ];
     }
 }

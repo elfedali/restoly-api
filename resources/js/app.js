@@ -19,11 +19,13 @@ import ExampleComponent from "./components/ExampleComponent.vue";
 import MenuComponent from "./components/MenuComponent.vue";
 import UploadImagesComponent from "./components/UploadImagesComponent.vue";
 import PhoneComponent from "./components/PhoneComponent.vue";
+import AddressComponent from "./components/AddressComponent.vue";
 
 app.component("example-component", ExampleComponent);
 app.component("menu-component", MenuComponent);
 app.component("upload-images-component", UploadImagesComponent);
 app.component("phone-component", PhoneComponent);
+app.component("address-component", AddressComponent);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

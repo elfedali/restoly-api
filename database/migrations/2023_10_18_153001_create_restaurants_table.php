@@ -22,11 +22,17 @@ return new class extends Migration
 
             $table->foreignId('owner_id')->constrained('users');
             $table->foreignId('createdby_id')->constrained('users');
-            $table->foreignId('district_id')->nullable()->constrained();
+            //$table->foreignId('district_id')->nullable()->constrained();
+
             $table->foreignId('approvedby_id')->nullable()->constrained('users');
             $table->timestamp('approved_at')->nullable();
 
             $table->string('address')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('district')->nullable();
+
             $table->boolean('is_active')->default(true);
             $table->decimal('longitude')->nullable();
             $table->decimal('latitude')->nullable();
