@@ -39,6 +39,7 @@ class User extends Authenticatable
         'avatar',
         'email_notification',
         'sms_notification',
+        'createdby_id',
 
     ];
 
@@ -130,5 +131,10 @@ class User extends Authenticatable
     public function scopeIsActive($query)
     {
         return $query->where('is_active', true);
+    }
+    // createdby
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'createdby_id');
     }
 }

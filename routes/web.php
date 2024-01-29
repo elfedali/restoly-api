@@ -15,9 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('admin.dashboard');
+    }
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])
+
+    ->name('logout');

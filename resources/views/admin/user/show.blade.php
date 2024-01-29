@@ -20,9 +20,25 @@
             <!-- /.col-12 -->
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane"
+                    type="button" role="tab" aria-controls="details-tab-pane" aria-selected="true">
+                    @lang('label.details')
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit-tab-pane" type="button"
+                    role="tab" aria-controls="edit-tab-pane" aria-selected="false">
+                    @lang('label.edit')
+                </button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab"
+                tabindex="0">
+                <div class="card mt-4">
                     <div class="card-body">
                         <h5>{{ __('label.user') }} #{{ $user->id }}</h5>
                         <table class="table table-striped ">
@@ -47,9 +63,9 @@
                                 <th>{{ __('label.active') }}</th>
                                 <td>
                                     @if ($user->is_active)
-                                        <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                        <x-yes />
                                     @else
-                                        <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                        <x-no />
                                     @endif
 
                                 </td>
@@ -86,9 +102,9 @@
                                 <th>{{ __('label.sms_notification') }}</th>
                                 <td>
                                     @if ($user->sms_notification)
-                                        <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                        <x-yes />
                                     @else
-                                        <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                        <x-no />
                                     @endif
                                 </td>
                             </tr>
@@ -112,9 +128,9 @@
                                 <th>{{ __('label.email-notification') }}</th>
                                 <td>
                                     @if ($user->email_notification)
-                                        <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                        <x-yes />
                                     @else
-                                        <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                        <x-no />
                                     @endif
                                 </td>
                             </tr>
@@ -146,13 +162,11 @@
                         {{ __('label.go-back') }}
                     </a>
                 </div>
-                
             </div>
-            <!-- /.col-6 -->
-            <div class="col-lg-8">
-                <div class="card">
+            <div class="tab-pane fade" id="edit-tab-pane" role="tabpanel" aria-labelledby="edit-tab" tabindex="0">
+                <div class="card mt-4">
                     <div class="card-body">
-                         
+
                         <h5>
                             {{ __('label.edit') }} #{{ $user->id }}
                         </h5>
@@ -162,7 +176,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="username" class="form-label">{{ __('label.username') }}
-                                 <span class="text-danger">*</span>
+                                    <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="username" id="username"
                                     class="form-control @error('username') is-invalid @enderror"
@@ -293,7 +307,7 @@
                                 <div id="sms_notificationHelp" class="form-text">
                                     {{ __('label.sms-notification-help') }}</div>
                             </div>
-{{-- 
+                            {{-- 
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ __('label.email') }}</label>
                                 <input type="email" name="email" id="email"
@@ -329,10 +343,13 @@
                                 </label>
                                 <select name="role" id="role"
                                     class="form-select @error('role') is-invalid @enderror" aria-describedby="roleHelp">
-                                    <option value="user" @if ($user->role == 'user') selected @endif>
-                                        {{ __('label.user') }}</option>
                                     <option value="admin" @if ($user->role == 'admin') selected @endif>
                                         {{ __('label.admin') }}</option>
+                                    <option value="commercial" @if ($user->role == 'commercial') selected @endif>
+                                        {{ __('label.commercial') }}</option>
+                                    <option value="user" @if ($user->role == 'user') selected @endif>
+                                        {{ __('label.user') }}</option>
+
                                 </select>
                                 @error('role')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -354,13 +371,11 @@
                 @include('admin.user._change_password', ['user' => $user])
                 @include('admin.user._change_role', ['user' => $user])
                 @include('admin.user._delete_user', ['user' => $user])
-               
-             
-                
+
             </div>
-            <!-- /.col-lg-6 -->
+
         </div>
-        <!-- /.row -->
+
     </div>
     <!-- /.container-fluid -->
 @endsection

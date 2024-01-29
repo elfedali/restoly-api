@@ -12,13 +12,18 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class, 'category');
+    }
+
     public function index(Request $request): View
     {
         $categories = Category::all()->sortByDesc('id');
 
         return view('admin.category.index', compact('categories'));
     }
-
 
 
     public function store(CategoryStoreRequest $request): RedirectResponse
@@ -57,6 +62,8 @@ class CategoryController extends Controller
     // toggle is_active
     public function toggleIsActive(Request $request, Category $category)
     {
+        $this->authorize('update', $category);
+
         $category->is_active = !$category->is_active;
         $category->save();
 

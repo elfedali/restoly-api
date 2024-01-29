@@ -23,7 +23,7 @@ class UserUpdateRequest extends FormRequest
             'username' => ['required', 'string'],
             // 'email' => ['required', 'email'],
             'is_active' => ['nullable', 'boolean'],
-            'role' => ['required', 'string', 'in:admin,user,subscriber,moderator'],
+            'role' => ['required', 'string', 'in:admin,user,commercial'],
             'first_name' => ['nullable', 'string'],
             'last_name' => ['nullable', 'string'],
             'bio' => ['nullable', 'string'],

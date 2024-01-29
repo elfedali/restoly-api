@@ -15,7 +15,7 @@
                         value="{{ request('filter.username') }}">
 
                 </div>
-                
+
                 <div class="col">
                     <label for="filter_status" class="form-label">{{ __('label.status') }}</label>
                     <select class="form-select" id="filter_status" name="filter[status]">
@@ -27,7 +27,7 @@
                             {{ __('label.inactive') }}</option>
                     </select>
                 </div>
-                
+
                 <div class="col">
                     <label for="filter_role" class="form-label">{{ __('label.role') }}</label>
                     <select class="form-select" id="filter_role" name="filter[role]">
@@ -50,13 +50,18 @@
                             {{ __('label.has-no-restaurant') }}</option>
                     </select>
                 </div>
-                <div class="col">
+                <div class="col text-end">
 
-                   
-                    <button type="submit" class="btn btn-primary ">{{ __('label.filter') }}</button>
-                   
-                    <a href="{{ route('admin.user.index') }}"  
-                        class="btn btn-secondary">{{ __('label.reset-filters') }}</a>
+
+                    <button type="submit" class="btn btn-primary mx-3">
+                        {{ __('label.filter') }}
+                        <i class="bi bi-funnel"></i>
+                    </button>
+
+                    <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        {{ __('label.reset-filters') }}
+                    </a>
 
                 </div>
             </div>
@@ -67,4 +72,3 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-

@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class CountryCityController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(City::class, 'city');
+    }
     public function show(Country $country, City $city)
     {
 

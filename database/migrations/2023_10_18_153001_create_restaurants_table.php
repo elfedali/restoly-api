@@ -20,11 +20,10 @@ return new class extends Migration
             $table->json('description')->nullable();
 
 
-            $table->foreignId('owner_id')->constrained('users');
-            $table->foreignId('createdby_id')->constrained('users');
-            //$table->foreignId('district_id')->nullable()->constrained();
+            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('createdby_id')->constrained('users')->nullOnDelete();
 
-            $table->foreignId('approvedby_id')->nullable()->constrained('users');
+            $table->foreignId('approvedby_id')->nullable()->constrained('users', 'id')->nullOnDelete();
             $table->timestamp('approved_at')->nullable();
 
             $table->string('address')->nullable();

@@ -18,9 +18,7 @@ class UserController extends Controller
 {
     public function index(Request $request): View
     {
-
         // TODO:: filter pagination, persiste filters in url
-
         $users = QueryBuilder::for(User::class)
             ->allowedFilters([
                 AllowedFilter::callback('username', function (Builder $query, $value) {
@@ -58,7 +56,16 @@ class UserController extends Controller
                         return $query->whereDoesntHave('restaurants');
                     }
                 }),
+
+
             ])
+            ->where(function (Builder $query) {
+                $user = auth()->user();
+                if ($user->role !== User::ROLE_ADMIN) {
+                    $query->where('createdby_id', $user->id);
+                }
+            })
+            ->defaultSort('-id')
             ->paginate(10);
 
 
@@ -75,9 +82,14 @@ class UserController extends Controller
         $user = new User($request->validated());
         $user->password = bcrypt($request->password);
         $user->role = User::ROLE_USER;
+        //  createdby_id of current user, check if connected and is admin or commercial
+        if (auth()->check() && auth()->user()->role !== User::ROLE_USER) {
+            $user->createdby_id = auth()->user()->id;
+        }
+
         $user->save();
 
-        return redirect()->route('admin.user.index')->with('success', 'User created successfully.');
+        return redirect()->route('admin.user.index')->with('success', __('messages.created'));
     }
 
     public function show(Request $request, User $user): View
@@ -93,11 +105,4 @@ class UserController extends Controller
 
         return redirect()->route('admin.user.show', $user->id)->with('success', 'User updated successfully.');
     }
-
-    // public function destroy(Request $request, User $user): RedirectResponse
-    // {
-    //     $user->delete();
-
-    //     return redirect()->route('admin.user.index')->with('success', 'User deleted successfully.');
-    // }
 }

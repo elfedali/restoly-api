@@ -3,21 +3,18 @@
 
 @section('content')
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <x-admin.title title="{{ __('label.restaurants') }}">
+                    <x-btns.create route="admin.restaurant.create" />
+                </x-admin.title>
+            </div>
+            <!-- /.col-12 -->
+        </div>
+        <!-- /.row -->
 
         <div class="row">
             <div class="col-12">
-                <div class="d-flex align-items-center mb-3">
-                    {{-- title --}}
-                    <h1 class="h4">
-                        {{ __('label.restaurants') }}
-                    </h1>
-                    {{-- create new restaurant --}}
-                    <a class="mx-3 btn btn-sm btn-outline-primary" href="{{ route('admin.restaurant.create') }}">
-                        <i class="bi bi-plus-circle me-1"></i>
-                        {{ __('label.create') }}
-                    </a>
-
-                </div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ __('label.dashboard') }}</a>
@@ -33,19 +30,16 @@
         <div class="row">
             <div class="col-12">
 
-                <div class="card">
-                    <div class="card-body">
-
-
+                <div class="card rounded-0">
+                    <div class="card-body p-0">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th width="5%">{{ __('label.id') }}</th>
-                                    <th>{{ __('label.name') }}</th>
-                                    <th>{{ __('label.owner') }}</th>
+                                    <th><i class="fa-solid fa-shop me-1"></i>{{ __('label.name') }}</th>
+                                    <th> <i class="fa-solid fa-key me-1"></i> {{ __('label.owner') }}</th>
                                     <th>{{ __('label.active') }}</th>
                                     <th>{{ __('label.created_at') }}</th>
-                                    {{-- <th>{{ __('label.updated_at') }}</th> --}}
                                     <th class="text-end">{{ __('label.actions') }}</th>
                                 </tr>
                             </thead>
@@ -56,40 +50,106 @@
                                         <td>
                                             <div>
                                                 <a href="{{ route('admin.restaurant.edit', $restaurant) }}">
-                                                    {{-- <img src="{{ $restaurant->image }}" alt="{{ $restaurant->name }}"
-                                                        class="img-fluid rounded" width="50"> --}}
-                                                    {{ $restaurant->name }}
+                                                    <strong> {{ $restaurant->name }}</strong>
                                                 </a>
-
-
                                             </div>
-
                                         </td>
-
-                                        <td>{{ $restaurant->owner->fullName() }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.user.show', $restaurant->owner) }}">
+                                                {{ $restaurant->owner->fullName() }}
+                                            </a>
+                                        </td>
                                         <td>
                                             @if ($restaurant->is_active)
-                                                <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                                <x-yes />
                                             @else
-                                                <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                                <x-no />
                                             @endif
                                         </td>
-                                        <td>{{ $restaurant->created_at }}</td>
-                                        {{-- <td>{{ $restaurant->updated_at }}</td> --}}
+
+                                        <td>{{ $restaurant->created_at->diffForHumans() }}</td>
+
                                         <td class="text-end">
                                             <div class="d-flex justify-content-end">
-                                                {{-- edit btn --}}
+                                                <div class="dropdown me-2">
+                                                    <button class="btn btn-sm btn-outline-secondary _dropdown-toggle"
+                                                        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        {{ __('label.more') }}
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.menu.index', $restaurant) }}">
+                                                                <i class="fas fa-utensils me-1"></i>
+                                                                {{ __('label.menu') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- review --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.review.index', $restaurant) }}">
+                                                                <i class="fas fa-star-half-alt me-1"></i>
+                                                                {{ __('label.reviews') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- image --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.image.index', $restaurant) }}">
+                                                                <i class="fas fa-images me-1"></i>
+                                                                {{ __('label.images') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- address --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.address.index', $restaurant) }}">
+                                                                <i class="fas fa-map-marker-alt me-1"></i>
+                                                                {{ __('label.address') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- link --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.link.index', $restaurant) }}">
+                                                                <i class="fas fa-link me-1"></i>
+                                                                {{ __('label.links') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- opening hours --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.openingHour.index', $restaurant) }}">
+                                                                <i class="fas fa-clock me-1"></i>
+                                                                {{ __('label.opening_hours') }}
+                                                            </a>
+                                                        </li>
+                                                        {{-- reservation --}}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.restaurant.reservation.index', $restaurant) }}">
+                                                                <i class="fas fa-calendar-check me-1"></i>
+                                                                {{ __('label.reservations') }}
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div> {{-- edit btn --}}
                                                 <a href="{{ route('admin.restaurant.edit', $restaurant) }}"
-                                                    class="btn btn-sm btn-primary me-2">
-                                                    <i class="bi bi-pencil-square"></i>
+                                                    class="btn btn-sm btn-secondary me-2">
+                                                    <i class="fas fa-edit me-1"></i>
+                                                    {{ __('label.edit') }}
                                                 </a>
                                                 {{-- delete btn --}}
                                                 <form action="{{ route('admin.restaurant.destroy', $restaurant) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        <i class="bi bi-trash"></i>
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger me-2"
+                                                        onclick="return confirm('{{ __('label.are-you-sure') }}')">
+                                                        <i class="fas fa-trash-alt me-1"></i>
+                                                        {{ __('label.delete') }}
                                                     </button>
                                                 </form>
                                             </div>
@@ -98,7 +158,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                     <!-- /.card-body -->
                 </div>

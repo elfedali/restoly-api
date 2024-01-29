@@ -44,9 +44,9 @@
                                 <th>{{ __('label.active') }}</th>
                                 <td>
                                     @if ($country->is_active)
-                                        <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                        <x-yes />
                                     @else
-                                        <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                        <x-no />
                                     @endif
 
                                     {{-- toggle is_active form --}}

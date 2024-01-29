@@ -23,10 +23,8 @@ class UserStoreRequest extends FormRequest
             'first_name' => ['nullable', 'string'],
             'last_name' => ['nullable', 'string'],
             'username' => ['required', 'string', 'min:4', 'max:255', 'unique:users'],
-            //'role' => ['required', 'string', 'in:admin,user,subscriber,moderator'],
             'email' => ['required', 'email'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
-            'is_active' => ['nullable', 'boolean'],
         ];
     }
 }

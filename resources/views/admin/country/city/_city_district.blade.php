@@ -27,9 +27,9 @@
                         <td>
 
                             @if ($district->is_active)
-                                <span class="badge bg-success">{{ __('label.yes') }}</span>
+                                <x-yes />
                             @else
-                                <span class="badge bg-danger">{{ __('label.no') }}</span>
+                                <x-no />
                             @endif
                         <td>{{ $district->slug }}</td>
 

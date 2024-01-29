@@ -16,7 +16,7 @@
         <div class="mb-3">
             <label for="description" class="form-label">{{ __('label.description') }}</label>
             <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
-                rows="3" placeholder="{{ __('label.description') }}" aria-describedby="descriptionHelp">{{ isset($restaurant) ? $restaurant->description : old('description') }}</textarea>
+                rows="10" placeholder="{{ __('label.description') }}" aria-describedby="descriptionHelp">{{ isset($restaurant) ? $restaurant->description : old('description') }}</textarea>
             @error('description')
                 <div id="descriptionHelp" class="form-text text-danger">{{ $message }}</div>
             @enderror

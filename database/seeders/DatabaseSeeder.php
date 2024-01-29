@@ -23,7 +23,25 @@ class DatabaseSeeder extends Seeder
             'email' => 'webmaster@restoly.ma',
             'is_admin' => true,
             'role' => \App\Models\User::ROLE_ADMIN,
-            'bio' => 'I am the admin of this website.',
+            'bio' => 'Je suis le webmaster de ce site web.',
+        ]);
+        \App\Models\User::factory()->create([
+            'first_name' => 'Safouan',
+            'last_name' => 'fdl',
+            'username' => 'safouan.fdl',
+            'email' => 'commercial@restoly.ma',
+            'is_admin' => true,
+            'role' => \App\Models\User::ROLE_COMMERCIAL,
+            'bio' => 'Je suis le commercial de ce site web.',
+        ]);
+        \App\Models\User::factory()->create([
+            'first_name' => 'Mouad',
+            'last_name' => 'ben',
+            'username' => 'mouab.ben',
+            'email' => 'mouad@restoly.ma',
+            'is_admin' => true,
+            'role' => \App\Models\User::ROLE_ADMIN,
+            'bio' => 'Je suis le commercial de ce site web.',
         ]);
 
         \App\Models\User::factory(9)->create();

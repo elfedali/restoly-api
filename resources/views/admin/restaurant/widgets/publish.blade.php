@@ -1,4 +1,4 @@
- <div class="card">
+ <div class="card border-success">
      <div class="card-header">
          <h5>{{ __('label.publish') }}</h5>
      </div>
@@ -6,15 +6,18 @@
      <div class="card-body">
          {{-- is_active  select --}}
          <div class="mb-3">
-             {{-- todo:: transform this to on/off button --}}
+             {{-- todo:: transform this to on/off switch --}}
              <label for="is_active" class="form-label">{{ __('label.active') }}</label>
              <select class="form-select @error('is_active') is-invalid @enderror" id="is_active" name="is_active">
-                 {{-- default option --}}
-                 <option selected disabled>{{ __('label.select') }}</option>
-                 <option value="0" {{ isset($restaurant) && $restaurant->is_active == 0 ? 'selected' : '' }}
-                     {{-- {{ old('is_active') == 0 ? 'selected' : '' }} --}}> {{ __('label.no') }}</option>
-                 <option value="1" {{ isset($restaurant) && $restaurant->is_active == 1 ? 'selected' : '' }}
-                     {{-- {{ old('is_active') == 1 ? 'selected' : '' }} --}}> {{ __('label.yes') }}</option>
+                 <option>{{ __('label.select') }}</option>
+                 <option value="0"
+                     {{ (isset($restaurant) && $restaurant->is_active == 0 ? 'selected' : old('is_active') == 0) ? 'selected' : '' }}>
+                     {{ __('label.no') }}
+                 </option>
+                 <option value="1"
+                     {{ (isset($restaurant) && $restaurant->is_active == 1 ? 'selected' : old('is_active') == 1) ? 'selected' : '' }}>
+                     {{ __('label.yes') }}
+                 </option>
              </select>
              @error('is_active')
                  <div class="invalid-feedback">{{ $message }}</div>
@@ -44,7 +47,7 @@
              @if (isset($restaurant))
                  {{ __('label.update') }}
              @else
-                 {{ __('label.create') }}
+                 {{ __('label.publish') }}
              @endif
 
          </button>

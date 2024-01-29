@@ -121,6 +121,7 @@ return [
     'select' => 'Sélectionner',
     'publish' => 'Publier',
     'new_restaurant' => 'Nouveau restaurant',
+    'edit_restaurant' => 'Modifier le restaurant',
 
     'username' => 'Nom d\'utilisateur',
     'username-help' => 'Le nom d\'utilisateur est utilisé pour se connecter.',
@@ -184,6 +185,30 @@ return [
     'of' => 'de',
     'phone' => 'Téléphone',
     'phones' => 'Téléphones',
+    'commercial' => 'Commercial',
+
+    'login' => 'Se connecter',
+    'login-message' => 'Connectez-vous pour commencer votre session',
+    'logout' => 'Se déconnecter',
+    'register' => 'S\'inscrire',
+    'welcome' => 'Bienvenue',
+    'welcome-to' => 'Bienvenue sur',
+    'welcome-message' => 'Bienvenue sur notre site web',
+    'profile' => 'Profil',
+    'account' => 'Compte',
+
+    'details' => 'Détails',
+    'info' => 'Info',
+    'new' => 'Nouveau',
+    'createdby' => 'Créé par',
+    'empty' => 'Vide',
+
+    'link' => 'Lien',
+    'links' => 'Liens',
+    'opening_hours' => 'Heures d\'ouverture',
+
+
+
 
 
 

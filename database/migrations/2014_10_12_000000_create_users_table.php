@@ -36,6 +36,8 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->boolean('is_admin')->default(false);
             $table->string('role')->default(User::ROLE_USER);
+            // createdby_id
+            $table->foreignId('createdby_id')->nullable()->constrained('users', 'id')->nullOnDelete();
 
             $table->rememberToken();
             $table->timestamps();
