@@ -25,7 +25,7 @@ class RestaurantController extends Controller
         $user = auth()->user();
         // Get the restaurants of the connected user if the user is not admin
         if ($user->role == User::ROLE_ADMIN) {
-            $restaurants = Restaurant::with('owner')->sortByDesc('id');
+            $restaurants = Restaurant::with('owner')->orderByDesc('id')->get();
         } else {
             $restaurants = $user->createdRestaurants()->with('owner')->orderByDesc('id')->get();
         }
