@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\RestaurantStoreRequest;
 use App\Http\Requests\Admin\RestaurantUpdateRequest;
 use App\Models\Phone;
 use App\Models\Restaurant;
+use App\Models\User;
 use App\Traits\FileUploaderTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,9 +18,17 @@ class RestaurantController extends Controller
     use  FileUploaderTrait;
     public function index(Request $request): View
     {
-        // todo:: with users categories services
-        $restaurants = Restaurant::all()->sortByDesc('id');
-
+        // Get the connected user
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+        // Get the restaurants of the connected user if the user is not admin
+        if ($user->role == User::ROLE_ADMIN) {
+            $restaurants = Restaurant::with('owner')->sortByDesc('id');
+        } else {
+            $restaurants = $user->createdRestaurants()->with('owner')->orderByDesc('id')->get();
+        }
         return view('admin.restaurant.index', compact('restaurants'));
     }
 

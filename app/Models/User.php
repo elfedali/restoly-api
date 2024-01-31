@@ -94,6 +94,7 @@ class User extends Authenticatable
         return $this->hasMany(Restaurant::class, 'owner_id');
     }
 
+
     // has many reviews
     public function reviews()
     {
@@ -136,5 +137,10 @@ class User extends Authenticatable
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'createdby_id');
+    }
+    // return  created restaurants by user
+    public function createdRestaurants()
+    {
+        return $this->hasMany(Restaurant::class, 'createdby_id');
     }
 }
