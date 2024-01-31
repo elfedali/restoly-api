@@ -29,9 +29,18 @@
                 </span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">{{ __('label.profile') }}</a></li>
-                <li><a class="dropdown-item" href="#">{{ __('label.settings') }}</a></li>
-                <li><a class="dropdown-item" href="#">{{ __('label.logout') }}</a></li>
+                <li><a class="dropdown-item"
+                        href="
+                    {{ route('admin.user.show', ['user' => Auth::user()->id]) }}
+                    ">{{ __('label.profile') }}</a>
+                </li>
+                {{-- <li><a class="dropdown-item" href="#">{{ __('label.settings') }}</a></li> --}}
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}">
+                        <i class="fas fa-sign-out-alt text-danger"></i>
+                        {{ __('label.logout') }}
+                    </a>
+                </li>
             </ul>
         </div>
 
