@@ -86,8 +86,11 @@ Route::delete('restaurant/{restaurant}/phone/{phone}', [App\Http\Controllers\Adm
 Route::get('restaurant/{restaurant}/address', [App\Http\Controllers\Admin\Restaurant\RestaurantAddressController::class, 'index'])->name('admin.restaurant.address.index');
 // restaurant Links
 Route::get('restaurant/{restaurant}/link', [App\Http\Controllers\Admin\Restaurant\RestaurantLinkController::class, 'index'])->name('admin.restaurant.link.index');
+Route::post('restaurant/{restaurant}/link', [App\Http\Controllers\Admin\Restaurant\RestaurantLinkController::class, 'store'])->name('admin.restaurant.link.store');
 // restaurant Opening Hours
 Route::get('restaurant/{restaurant}/opening-hour', [App\Http\Controllers\Admin\Restaurant\RestaurantOpeningHourController::class, 'index'])->name('admin.restaurant.openingHour.index');
+Route::post('restaurant/{restaurant}/opening-hour', [App\Http\Controllers\Admin\Restaurant\RestaurantOpeningHourController::class, 'store'])->name('admin.restaurant.openingHour.store');
+Route::put('restaurant/{restaurant}/opening-hour', [App\Http\Controllers\Admin\Restaurant\RestaurantOpeningHourController::class, 'update'])->name('admin.restaurant.openingHour.update');
 // restaurant reservations
 Route::get('restaurant/{restaurant}/reservation', [App\Http\Controllers\Admin\Restaurant\RestaurantReservationController::class, 'index'])->name('admin.restaurant.reservation.index');
 

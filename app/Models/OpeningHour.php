@@ -17,8 +17,9 @@ class OpeningHour extends Model
      */
     protected $fillable = [
         'day',
-        'open',
-        'close',
+        'open_time',
+        'close_close',
+        'is_closed',
     ];
 
     /**
@@ -28,6 +29,8 @@ class OpeningHour extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        // 'open' => 'time:H:i',
+        // 'close' => 'time:H:i',
     ];
 
     public function openinghourable(): MorphTo

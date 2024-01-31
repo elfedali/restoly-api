@@ -235,6 +235,29 @@ return [
     'is_main' => 'Est principal',
     'weight' => 'Poids',
     'action' => 'Action',
+    'help_social' => 'Les liens de vous réseaux sociaux.',
+    'list_social' => 'facebook,twitter,instagram,website,tiktok,youtube',
+    'help_phone' => 'Les numéros de téléphone.',
+    'url' => 'URL',
+
+
+    'days' => [
+        'monday' => 'Lundi',
+        'tuesday' => 'Mardi',
+        'wednesday' => 'Mercredi',
+        'thursday' => 'Jeudi',
+        'friday' => 'Vendredi',
+        'saturday' => 'Samedi',
+        'sunday' => 'Dimanche',
+    ],
+    'day' => 'Jour',
+    'is_closed' => 'Est fermé',
+    'is_open' => 'Est ouvert',
+    'open_time' => 'Ouvert',
+    'close_time' => 'Fermé',
+
+
+
 
 
 

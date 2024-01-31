@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('opening_hours', function (Blueprint $table) {
             $table->id();
-            $table->enum('day', ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]);
-            $table->time('open');
-            $table->time('close');
+            $table->enum('day', ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+            $table->time('open_time');
+            $table->time('close_time');
+            $table->boolean('is_closed')->default(false);
             $table->unsignedBigInteger('openinghourable_id');
             $table->string('openinghourable_type');
             $table->timestamps();
