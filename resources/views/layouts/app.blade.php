@@ -13,7 +13,7 @@
 
         @yield('title')
     </title>
-
+    @yield('css')
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

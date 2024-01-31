@@ -53,6 +53,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(CurrencySeeder::class);
 
+        $this->call(RestaurantSeeder::class);
+
         Task::factory()->count(10)->create();
     }
 }

@@ -37,3 +37,10 @@
         {{ __('label.users') }}
     </a>
 </li>
+{{-- images --}}
+<li class="nav-item">
+    <a class="nav-link  @if (request()->routeIs('admin.image.*')) active @endif" href="{{ route('admin.image.index') }}">
+        <i class="fas fa-images"></i>
+        {{ __('label.images') }}
+    </a>
+</li>

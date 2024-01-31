@@ -20,10 +20,16 @@ class MenuItemUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'menu_category_id' => ['required', 'integer', 'exists:menu_categories,id'],
-            'name' => ['required', 'json'],
+            // 'menu_category_id' => ['required', 'integer', 'exists:menu_categories,id'],
+            'name' => ['required', 'string'],
             'price' => ['required', 'numeric'],
-            'description' => ['nullable', 'json'],
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'max:1024'],
+            'is_active' => ['required', 'boolean'],
+            'is_veg' => ['required', 'boolean'],
+            'is_popular' => ['required', 'boolean'],
+            'position' => ['required', 'integer'],
+
         ];
     }
 }

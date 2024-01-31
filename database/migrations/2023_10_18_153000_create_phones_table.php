@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_main')->default(false);
             $table->unsignedBigInteger('phoneable_id');
             $table->string('phoneable_type');
+            $table->unsignedInteger('weight')->default(0);
             $table->timestamps();
         });
 

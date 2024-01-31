@@ -26,3 +26,7 @@ Auth::routes();
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])
 
     ->name('logout');
+
+
+
+// Route::post('r/{restaurant}/image', [App\Http\Controllers\Admin\Restaurant\RestaurantImageController::class, 'store'])->name('admin.restaurant.image.store');

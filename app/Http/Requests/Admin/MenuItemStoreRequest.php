@@ -24,6 +24,7 @@ class MenuItemStoreRequest extends FormRequest
             'name' => ['required', 'string'],
             'price' => ['required', 'numeric'],
             'description' => ['nullable', 'string'],
+            'image' => ['required', 'image', 'max:1024'],
         ];
     }
 }

@@ -64,12 +64,24 @@ Route::resource('restaurant', App\Http\Controllers\Admin\RestaurantController::c
 
 //Restaurant Menu 
 Route::get('restaurant/{restaurant}/menu', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'index'])->name('admin.restaurant.menu.index');
+Route::post('restaurant/{restaurant}/menu/menu-category', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'storeMenuCategory'])->name('admin.restaurant.menu.storeMenuCategory');
+Route::delete('restaurant/{restaurant}/menu/menu-category/{menuCategory}', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'destroyMenuCategory'])->name('admin.restaurant.menu.destroyMenuCategory');
+Route::post('restaurant/{restaurant}/menu/menu-category/{menuCategory}/menu-item', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'storeMenuItem'])->name('admin.restaurant.menu.storeMenuItem');
+// destroyMenuItem
+Route::delete('restaurant/{restaurant}/menu/menu-category/{menuCategory}/menu-item/{menuItem}', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'destroyMenuItem'])->name('admin.restaurant.menu.destroyMenuItem');
+// updateMenuItem
+Route::put('restaurant/{restaurant}/menu/menu-category/{menuCategory}/menu-item/{menuItem}', [App\Http\Controllers\Admin\Restaurant\RestaurantMenuController::class, 'updateMenuItem'])->name('admin.restaurant.menu.updateMenuItem');
 // Restaurant reviews
 Route::get('restaurant/{restaurant}/review', [App\Http\Controllers\Admin\Restaurant\RestaurantReviewController::class, 'index'])->name('admin.restaurant.review.index');
 // restaurant Images
 Route::get('restaurant/{restaurant}/image', [App\Http\Controllers\Admin\Restaurant\RestaurantImageController::class, 'index'])->name('admin.restaurant.image.index');
+Route::post('restaurant/{restaurant}/image', [App\Http\Controllers\Admin\Restaurant\RestaurantImageController::class, 'store'])->name('admin.restaurant.image.store');
+
 // restaurant Phones
 Route::get('restaurant/{restaurant}/phone', [App\Http\Controllers\Admin\Restaurant\RestaurantPhoneController::class, 'index'])->name('admin.restaurant.phone.index');
+Route::post('restaurant/{restaurant}/phone', [App\Http\Controllers\Admin\Restaurant\RestaurantPhoneController::class, 'store'])->name('admin.restaurant.phone.store');
+Route::put('restaurant/{restaurant}/phone/{phone}', [App\Http\Controllers\Admin\Restaurant\RestaurantPhoneController::class, 'update'])->name('admin.restaurant.phone.update');
+Route::delete('restaurant/{restaurant}/phone/{phone}', [App\Http\Controllers\Admin\Restaurant\RestaurantPhoneController::class, 'destroy'])->name('admin.restaurant.phone.destroy');
 // restaurant Addresses
 Route::get('restaurant/{restaurant}/address', [App\Http\Controllers\Admin\Restaurant\RestaurantAddressController::class, 'index'])->name('admin.restaurant.address.index');
 // restaurant Links
@@ -79,19 +91,25 @@ Route::get('restaurant/{restaurant}/opening-hour', [App\Http\Controllers\Admin\R
 // restaurant reservations
 Route::get('restaurant/{restaurant}/reservation', [App\Http\Controllers\Admin\Restaurant\RestaurantReservationController::class, 'index'])->name('admin.restaurant.reservation.index');
 
-// admin.restaurant.phone.delete
-Route::delete('restaurant/{restaurant}/phone/{phone}', function (\App\Models\Restaurant $restaurant, App\Models\Phone $phone) {
-    // Ensure the phone is associated with the provided restaurant
-    if ($phone->phoneable_type !== 'App\Models\Restaurant' || $phone->phoneable_id !== $restaurant->id) {
-        return response()->json(['message' => 'Invalid phone for this restaurant'], 403);
-    }
+############
+### Images
+############
+Route::get('media', [App\Http\Controllers\Admin\Image\ImageController::class, 'index'])->name('admin.image.index');
 
-    // Delete the phone
-    $phone->delete();
 
-    return response()->json(['message' => 'Phone deleted successfully'], 200);
-    // return redirect()->route('admin.restaurant.edit', $restaurant->id)->with('success', 'Phone deleted successfully.');
-})->name('admin.restaurant.phone.delete');
+// // admin.restaurant.phone.delete
+// Route::delete('restaurant/{restaurant}/phone/{phone}', function (\App\Models\Restaurant $restaurant, App\Models\Phone $phone) {
+//     // Ensure the phone is associated with the provided restaurant
+//     if ($phone->phoneable_type !== 'App\Models\Restaurant' || $phone->phoneable_id !== $restaurant->id) {
+//         return response()->json(['message' => 'Invalid phone for this restaurant'], 403);
+//     }
+
+//     // Delete the phone
+//     $phone->delete();
+
+//     return response()->json(['message' => 'Phone deleted successfully'], 200);
+//     // return redirect()->route('admin.restaurant.edit', $restaurant->id)->with('success', 'Phone deleted successfully.');
+// })->name('admin.restaurant.phone.delete');
 // delete link
 Route::delete('restaurant/{restaurant}/link/{link}', function (\App\Models\Restaurant $restaurant, \App\Models\Link $link) {
     // Ensure the link is associated with the provided restaurant
@@ -107,7 +125,7 @@ Route::delete('restaurant/{restaurant}/link/{link}', function (\App\Models\Resta
 
 //Route::resource('menu', App\Http\Controllers\Admin\MenuController::class)->names('admin.menu');
 
-//Route::resource('menu-category', App\Http\Controllers\Admin\MenuCategoryController::class)->names('admin.menu-category');
+
 
 //Route::resource('menu-item', App\Http\Controllers\Admin\MenuItemController::class)->names('admin.menu-item');
 

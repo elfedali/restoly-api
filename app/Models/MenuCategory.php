@@ -24,6 +24,7 @@ class MenuCategory extends Model
     protected $fillable = [
         'menu_id',
         'name',
+
     ];
 
     /**

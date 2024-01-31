@@ -23,7 +23,7 @@ class MenuCategoryFactory extends Factory
     {
         return [
             'menu_id' => Menu::factory(),
-            'name' => '{}',
+            'name' => $this->faker->randomElement(["Appetizers", "Main Dishes", "Desserts", "Drinks", "Salads", "Soups", "Burgers", "Sandwiches", "Pizza", "Pasta", "Seafood", "Chicken", "Beef", "Vegetarian", "Vegan", "Gluten Free", "Sides", "Kids", "Breakfast", "Lunch", "Dinner", "Brunch", "Dessert"]),
         ];
     }
 }

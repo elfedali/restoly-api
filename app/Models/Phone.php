@@ -20,6 +20,7 @@ class Phone extends Model
         'is_active',
         'is_verified',
         'is_main',
+        'weight',
     ];
 
     /**
@@ -32,6 +33,8 @@ class Phone extends Model
         'is_active' => 'boolean',
         'is_verified' => 'boolean',
         'is_main' => 'boolean',
+        'weight' => 'integer',
+
     ];
 
     public function phoneable(): MorphTo

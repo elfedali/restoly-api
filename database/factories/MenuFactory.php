@@ -23,8 +23,6 @@ class MenuFactory extends Factory
     {
         return [
             'restaurant_id' => Restaurant::factory(),
-            'name' => '{}',
-            'description' => '{}',
         ];
     }
 }

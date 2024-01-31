@@ -12,7 +12,7 @@ trait FileUploaderTrait
     public function uploadAvatar($file, $folder = null, $disk = 'public', $filename = null)
     {
         $name = !is_null($filename) ? $filename : time();
-        $path = !is_null($folder) ? $folder . '/' : '';
+        $path = !is_null($folder) ? $folder . '' : '';
         $img = Image::make($file)->resize(300, 300)->encode('jpg', 80);
         Storage::disk($disk)->put($path . $name . '.jpg', $img);
         return $path . $name . '.jpg';
@@ -20,7 +20,7 @@ trait FileUploaderTrait
     public function uploadFile($file, $folder = null, $disk = 'public', $filename = null)
     {
         $name = !is_null($filename) ? $filename : time();
-        $path = !is_null($folder) ? $folder . '/' : '';
+        $path = !is_null($folder) ? $folder . '' : '';
         return $file->storeAs($path, $name . '.' . $file->getClientOriginalExtension(), $disk);
     }
 

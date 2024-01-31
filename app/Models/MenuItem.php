@@ -26,6 +26,11 @@ class MenuItem extends Model
         'name',
         'price',
         'description',
+        'is_active',
+        'is_veg',
+        'is_popular',
+        'position',
+
     ];
 
     /**
@@ -37,13 +42,18 @@ class MenuItem extends Model
         'id' => 'integer',
         'menu_category_id' => 'integer',
         'name' => 'array',
-        'price' => 'decimal',
+
         'description' => 'array',
+        'is_active' => 'boolean',
+        'is_veg' => 'boolean',
+        'is_popular' => 'boolean',
+        'position' => 'integer',
+
     ];
 
-    public function images(): MorphMany
+    public function image()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     public function menuCategory(): BelongsTo

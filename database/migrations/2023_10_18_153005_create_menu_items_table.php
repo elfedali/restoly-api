@@ -19,6 +19,12 @@ return new class extends Migration
             $table->json('name');
             $table->decimal('price');
             $table->json('description')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_veg')->default(false);
+            $table->boolean('is_popular')->default(false);
+            $table->integer('position')->default(0);
+
+
             $table->timestamps();
         });
 
