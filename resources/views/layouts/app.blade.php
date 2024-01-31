@@ -25,7 +25,7 @@
 
 <body @if (app()->getLocale() == 'ar') dir="rtl" @endif data-bs-theme="light">
     @php
-        $menu_classes = Auth::user()->role == \App\Models\User::ROLE_ADMIN ? 'navbar-dark bg-dark' : 'navbar-light bg-light';
+        $menu_classes = Auth::user()->role == \App\Models\User::ROLE_ADMIN ? 'navbar-dark bg-dark' : 'navbar-dark bg-primary';
     @endphp
     <div class="layout-app" id="app">
 

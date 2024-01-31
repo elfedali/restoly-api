@@ -1,10 +1,19 @@
-<div class="menu-top bg-dark d-flex justify-content-between px-3">
+{{-- $menu_classes = Auth::user()->role == \App\Models\User::ROLE_ADMIN ? 'navbar-dark bg-dark' : 'navbar-dark bg-primary'; --}}
+<div
+    class="menu-top d-flex justify-content-between px-3
+{{ Auth::user()->role == \App\Models\User::ROLE_ADMIN ? 'bg-dark' : 'bg-primary' }}
+
+">
+
 
     <section>
 
         <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <button
+                class="btn  dropdown-toggle
+            {{ Auth::user()->role == \App\Models\User::ROLE_ADMIN ? 'btn-dark' : 'btn-primary' }}
+            "
+                type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-plus"></i>
                 <span>
                     {{ __('label.new') }}
